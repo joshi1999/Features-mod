@@ -9,7 +9,7 @@ by IDarKay
 
 ---
   [![Status](https://img.shields.io/badge/status-active-success.svg)]() 
-  [![GitHub Release](https://img.shields.io/github/release/joshi1999/Features-mod.svg)](https://github.com/IDarKay/Features-mod/releases/latest)
+  [![GitHub Release](https://img.shields.io/github/release/joshi1999/Features-mod.svg)](https://github.com/joshi1999/Features-mod/releases/latest)
   [![Minecraft version](https://img.shields.io/badge/Minecraft_version-1.18.1%2B-informational)](https://www.minecraft.net/en-en/store/minecraft-java-edition)
   
 ---
