@@ -48,6 +48,9 @@ public abstract class KeyBindings
     public static final KeyBinding CLICK_START_KEY = new KeyBinding("key." + MOD_ID + ".turnOnAutoRClick",
             InputUtil.UNKNOWN_KEY.getCode(),
             "key.categories." + MOD_ID);
+    public static final KeyBinding TOGGLE_BREAK_PROTECTION = new KeyBinding("key." + MOD_ID + ".toggleBreakProtection",
+            InputUtil.UNKNOWN_KEY.getCode(),
+            "key.categories." + MOD_ID);
 
     public static void init()
     {
@@ -59,6 +62,7 @@ public abstract class KeyBindings
         KeyBindingHelper.registerKeyBinding(AUTO_FARM_OPTIONS_KEY);
         KeyBindingHelper.registerKeyBinding(MINE_START_KEY);
         KeyBindingHelper.registerKeyBinding(CLICK_START_KEY);
+        KeyBindingHelper.registerKeyBinding(TOGGLE_BREAK_PROTECTION);
     }
 
 }

@@ -23,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class MinecraftClientMixin implements PublicMinecraftClientEditor
 {
 
-	@Shadow protected abstract void doAttack();
+	@Shadow protected abstract boolean doAttack();
 
 	@Shadow protected abstract void doItemUse();
 
@@ -58,7 +58,7 @@ public abstract class MinecraftClientMixin implements PublicMinecraftClientEdito
 	private void handleInputEvents(CallbackInfo ci)
 	{
 		if(FeaturesClient.isEating && FeaturesClient.options().eatOn && (FeaturesClient.options().autoAttackActivated || FeaturesClient.options().autoMineActivated)) ci.cancel();
-		else this.handleBlockBreaking(this.currentScreen == null && this.options.keyAttack.isPressed() && this.mouse.isCursorLocked());
+		else this.handleBlockBreaking(this.currentScreen == null && this.options.attackKey.isPressed() && this.mouse.isCursorLocked());
 	}
 
 	/**

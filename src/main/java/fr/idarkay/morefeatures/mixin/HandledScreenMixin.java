@@ -64,15 +64,15 @@ public abstract class HandledScreenMixin<T extends ScreenHandler> extends Screen
         {
             return true;
         }
-        else if (keyCode != 256 && !this.client.options.keyInventory.matchesKey(keyCode, scanCode))
+        else if (keyCode != 256 && !this.client.options.inventoryKey.matchesKey(keyCode, scanCode))
         {
             this.handleHotbarKeyPressed(keyCode, scanCode);
             if (this.focusedSlot != null && this.focusedSlot.hasStack())
             {
-                if (this.client.options.keyPickItem.matchesKey(keyCode, scanCode))
+                if (this.client.options.pickItemKey.matchesKey(keyCode, scanCode))
                 {
                     this.onMouseClick(this.focusedSlot, this.focusedSlot.id, 0, SlotActionType.CLONE);
-                } else if (this.client.options.keyDrop.matchesKey(keyCode, scanCode))
+                } else if (this.client.options.dropKey.matchesKey(keyCode, scanCode))
                 {
                     boolean control = hasControlDown();
                     if(hasShiftDown() && control)

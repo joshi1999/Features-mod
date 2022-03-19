@@ -75,20 +75,26 @@ public class FeaturesClient implements ClientModInitializer
 				{
 					lastInput = System.currentTimeMillis();
 					boolean active = options().switchMineActive();
-					client.options.keyAttack.setPressed(false);
+					client.options.attackKey.setPressed(false);
 					client.inGameHud.addChatMessage(MessageType.GAME_INFO, new TranslatableText( "message." + MOD_ID + ".mine" + (active ? "On" : "Off")), Util.NIL_UUID);
 				}
 				else if (KeyBindings.CLICK_START_KEY.isPressed())
 				{
 					lastInput = System.currentTimeMillis();
 					boolean active = options().switchClickActive();
-					client.options.keyAttack.setPressed(false);
+					client.options.attackKey.setPressed(false);
 					client.inGameHud.addChatMessage(MessageType.GAME_INFO, new TranslatableText( "message." + MOD_ID + ".click" + (active ? "On" : "Off")), Util.NIL_UUID);
 				}
 				else if (KeyBindings.AUTO_FARM_OPTIONS_KEY.isPressed())
 				{
 					lastInput = System.currentTimeMillis();
 					client.setScreen(new AutoFarmScreen(null, options()));
+				}
+				else if (KeyBindings.TOGGLE_BREAK_PROTECTION.isPressed()) {
+					lastInput = System.currentTimeMillis();
+					options().breakSafe = !options().breakSafe;
+					lastShown = System.currentTimeMillis();
+					client.inGameHud.addChatMessage(MessageType.GAME_INFO, new TranslatableText( "message." + MOD_ID + ".break_protection" + (options().breakSafe ? "On" : "Off")), Util.NIL_UUID);
 				}
 			}
 			if (System.currentTimeMillis() - lastShown > 3000) {
@@ -119,7 +125,7 @@ public class FeaturesClient implements ClientModInitializer
 			}
 			else if(options().autoMineActivated)
 			{
-				client.options.keyAttack.setPressed(true);
+				client.options.attackKey.setPressed(true);
 				doEat(client);
 			}
 			else if(options().autoClickActivated)
