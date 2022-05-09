@@ -21,38 +21,32 @@ import java.util.function.*;
  * Created the 28/07/2020 at 00:06
  */
 @Environment(EnvType.CLIENT)
-public class BooleanOption extends Option
-{
+public class BooleanOption extends Option {
 
     private final Predicate<FeaturesGameOptions> getter;
     private final BiConsumer<FeaturesGameOptions, Boolean> setter;
 
-    protected BooleanOption(MutableText prefix, Predicate<FeaturesGameOptions> getter, BiConsumer<FeaturesGameOptions, Boolean> setter)
-    {
+    protected BooleanOption(MutableText prefix, Predicate<FeaturesGameOptions> getter, BiConsumer<FeaturesGameOptions, Boolean> setter) {
         super(prefix);
         this.getter = getter;
         this.setter = setter;
     }
 
-    public void set(FeaturesGameOptions options, boolean value)
-    {
+    public void set(FeaturesGameOptions options, boolean value) {
         setter.accept(options, value);
         options.writeChanges();
     }
 
-    public void set(FeaturesGameOptions options)
-    {
+    public void set(FeaturesGameOptions options) {
         set(options, !get(options));
     }
 
-    public boolean get(FeaturesGameOptions options)
-    {
+    public boolean get(FeaturesGameOptions options) {
         return getter.test(options);
     }
 
     @Override
-    public ClickableWidget createButton(FeaturesGameOptions options, int x, int y, int width)
-    {
+    public ClickableWidget createButton(FeaturesGameOptions options, int x, int y, int width) {
         return new ButtonWidget(x, y, width, 20, getDisplayString(options), button ->
         {
             set(options);

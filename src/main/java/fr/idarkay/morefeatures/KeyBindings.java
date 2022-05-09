@@ -15,8 +15,7 @@ import org.lwjgl.glfw.GLFW;
  * @author Alois. B. (IDarKay),
  * Created the 31/07/2020 at 01:44
  */
-public abstract class KeyBindings
-{
+public abstract class KeyBindings {
     private static final String MOD_ID = FeaturesMod.MOD_ID;
 
     public static final KeyBinding OPEN_OPTIONS_KEYS = new KeyBinding("key." + MOD_ID + ".options",
@@ -52,8 +51,7 @@ public abstract class KeyBindings
             InputUtil.UNKNOWN_KEY.getCode(),
             "key.categories." + MOD_ID);
 
-    public static void init()
-    {
+    public static void init() {
         KeyBindingHelper.registerKeyBinding(OPEN_OPTIONS_KEYS);
         KeyBindingHelper.registerKeyBinding(ADD_LOCAL_TIME_KEYS);
         KeyBindingHelper.registerKeyBinding(REMOVE_LOCAL_TIME_KEYS);

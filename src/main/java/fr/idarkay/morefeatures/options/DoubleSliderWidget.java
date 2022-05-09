@@ -16,28 +16,24 @@ import net.minecraft.text.LiteralText;
  * Created the 27/07/2020 at 23:28
  */
 @Environment(EnvType.CLIENT)
-public class DoubleSliderWidget extends SliderWidget
-{
+public class DoubleSliderWidget extends SliderWidget {
     private final FeaturesGameOptions options;
     private final DoubleOption option;
 
-    public DoubleSliderWidget(FeaturesGameOptions options, int x, int y, int width, int height, DoubleOption option)
-    {
-        super(x, y, width, height, LiteralText.EMPTY, (double)((float)option.getRatio(option.get(options))));
+    public DoubleSliderWidget(FeaturesGameOptions options, int x, int y, int width, int height, DoubleOption option) {
+        super(x, y, width, height, LiteralText.EMPTY, (double) ((float) option.getRatio(option.get(options))));
         this.options = options;
         this.option = option;
         updateMessage();
     }
 
     @Override
-    protected void updateMessage()
-    {
+    protected void updateMessage() {
         this.setMessage(this.option.getDisplayString(options));
     }
 
     @Override
-    protected void applyValue()
-    {
+    protected void applyValue() {
         this.option.set(options, this.option.getValue(this.value));
         options.writeChanges();
     }

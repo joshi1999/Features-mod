@@ -10,8 +10,7 @@ package fr.idarkay.morefeatures;
  * @author Alois. B. (IDarKay),
  * Created the 11/08/2020 at 01:13
  */
-public interface PublicMinecraftClientEditor
-{
+public interface PublicMinecraftClientEditor {
     /**
      * use this and not reflect because code obfuscation
      */

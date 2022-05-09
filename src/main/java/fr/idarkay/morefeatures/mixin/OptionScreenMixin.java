@@ -24,19 +24,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  * Created the 27/07/2020 at 16:40
  */
 @Mixin(OptionsScreen.class)
-public abstract class OptionScreenMixin extends Screen
-{
-    protected OptionScreenMixin(Text title)
-    {
+public abstract class OptionScreenMixin extends Screen {
+    protected OptionScreenMixin(Text title) {
         super(title);
     }
 
     @Inject(method = "init", at = @At("RETURN"))
-    protected void init(CallbackInfo ci)
-    {
-        if(this.client != null && this.client.world != null)
-        {
-            this.addDrawableChild(MenuButtons.FEATURES.createButton(this, FeaturesClient.options(), this.width / 2 - 155, this.height / 6 + 144 - 6, 150));
+    protected void init(CallbackInfo ci) {
+        if (this.client != null && this.client.world != null) {
+            int x = this.width / 2 - 155;
+            int y = this.height / 6 + 144 - 6;
+            int w = 150;
+            this.addDrawableChild(MenuButtons.FEATURES.createButton(this, FeaturesClient.options(), x, y, w));
         }
     }
 }

@@ -17,11 +17,11 @@ import org.spongepowered.asm.mixin.Shadow;
  * Created the 31/07/2020 at 00:59
  */
 @Mixin(ClientWorld.Properties.class)
-public abstract class ClientWorldPropertiesMixin
-{
+public abstract class ClientWorldPropertiesMixin {
 
 
-    @Shadow private long timeOfDay;
+    @Shadow
+    private long timeOfDay;
 
 
     /**
@@ -29,9 +29,8 @@ public abstract class ClientWorldPropertiesMixin
      * @reason for local time
      */
     @Overwrite
-    public long getTimeOfDay()
-    {
-        if(FeaturesClient.options().localTime)
+    public long getTimeOfDay() {
+        if (FeaturesClient.options().localTime)
             return FeaturesClient.LOCAL_TIME;
         return this.timeOfDay;
     }

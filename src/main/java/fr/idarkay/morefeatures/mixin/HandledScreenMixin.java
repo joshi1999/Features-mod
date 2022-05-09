@@ -37,20 +37,26 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  * Created the 29/07/2020 at 22:09
  */
 @Mixin(HandledScreen.class)
-public abstract class HandledScreenMixin<T extends ScreenHandler> extends Screen implements ScreenHandlerProvider<T>
-{
-    @Shadow protected abstract boolean handleHotbarKeyPressed(int keyCode, int scanCode);
+public abstract class HandledScreenMixin<T extends ScreenHandler> extends Screen implements ScreenHandlerProvider<T> {
+    @Shadow
+    protected abstract boolean handleHotbarKeyPressed(int keyCode, int scanCode);
 
-    @Shadow @Nullable protected Slot focusedSlot;
+    @Shadow
+    @Nullable
+    protected Slot focusedSlot;
 
-    @Shadow protected abstract void onMouseClick(Slot slot, int invSlot, int clickData, SlotActionType actionType);
+    @Shadow
+    protected abstract void onMouseClick(Slot slot, int invSlot, int clickData, SlotActionType actionType);
 
-    @Shadow @Final protected T handler;
+    @Shadow
+    @Final
+    protected T handler;
 
-    @Shadow @Nullable protected abstract Slot getSlotAt(double xPosition, double yPosition);
+    @Shadow
+    @Nullable
+    protected abstract Slot getSlotAt(double xPosition, double yPosition);
 
-    protected HandledScreenMixin(Text title)
-    {
+    protected HandledScreenMixin(Text title) {
         super(title);
     }
 
@@ -60,36 +66,26 @@ public abstract class HandledScreenMixin<T extends ScreenHandler> extends Screen
      */
     @Overwrite
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-        if (super.keyPressed(keyCode, scanCode, modifiers))
-        {
+        if (super.keyPressed(keyCode, scanCode, modifiers)) {
             return true;
-        }
-        else if (keyCode != 256 && !this.client.options.inventoryKey.matchesKey(keyCode, scanCode))
-        {
+        } else if (keyCode != 256 && !this.client.options.inventoryKey.matchesKey(keyCode, scanCode)) {
             this.handleHotbarKeyPressed(keyCode, scanCode);
-            if (this.focusedSlot != null && this.focusedSlot.hasStack())
-            {
-                if (this.client.options.pickItemKey.matchesKey(keyCode, scanCode))
-                {
+            if (this.focusedSlot != null && this.focusedSlot.hasStack()) {
+                if (this.client.options.pickItemKey.matchesKey(keyCode, scanCode)) {
                     this.onMouseClick(this.focusedSlot, this.focusedSlot.id, 0, SlotActionType.CLONE);
-                } else if (this.client.options.dropKey.matchesKey(keyCode, scanCode))
-                {
+                } else if (this.client.options.dropKey.matchesKey(keyCode, scanCode)) {
                     boolean control = hasControlDown();
-                    if(hasShiftDown() && control)
-                    {
+                    if (hasShiftDown() && control) {
                         Item focusedType = this.focusedSlot.getStack().getItem();
-                        if(!focusedType.equals(Items.AIR))
-                        {
-                            for (Slot slot : handler.slots)
-                            {
-                                if(slot.getStack().getItem().equals(focusedType))
-                                {
+                        if (!focusedType.equals(Items.AIR)) {
+                            for (Slot slot : handler.slots) {
+                                if (slot.getStack().getItem().equals(focusedType)) {
                                     this.onMouseClick(slot, slot.id, 1, SlotActionType.THROW);
                                 }
                             }
                         }
-                    }
-                    else this.onMouseClick(this.focusedSlot, this.focusedSlot.id, control ? 1 : 0, SlotActionType.THROW);
+                    } else
+                        this.onMouseClick(this.focusedSlot, this.focusedSlot.id, control ? 1 : 0, SlotActionType.THROW);
                 }
             }
             return true;
@@ -100,32 +96,30 @@ public abstract class HandledScreenMixin<T extends ScreenHandler> extends Screen
     }
 
     @Inject(method = "mouseDragged(DDIDD)Z", at = @At("TAIL"))
-    public void mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY, CallbackInfoReturnable<Boolean> cir)
-    {
-        if((button == 0 || button == 1) && hasShiftDown() && this.client.player.currentScreenHandler.getCursorStack().isEmpty())
-        {
+    public void mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY,
+                             CallbackInfoReturnable<Boolean> cir) {
+        if ((button == 0 || button == 1) && hasShiftDown()
+                && this.client.player.currentScreenHandler.getCursorStack().isEmpty()) {
             Slot slot = this.getSlotAt(mouseX, mouseY);
-            if(slot != null && !slot.getStack().isEmpty())
-            {
+            if (slot != null && !slot.getStack().isEmpty()) {
                 this.onMouseClick(slot, slot.id, button, SlotActionType.QUICK_MOVE);
             }
         }
     }
 
-    @Inject(method = "drawSlot(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/screen/slot/Slot;)V", at = @At("RETURN"))
-    private void drawSlot(MatrixStack matrices, Slot slot, CallbackInfo ci)
-    {
+    @Inject(method = "drawSlot(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/screen/slot/Slot;)V",
+            at = @At("RETURN"))
+    private void drawSlot(MatrixStack matrices, Slot slot, CallbackInfo ci) {
 //        final boolean maj = (InputUtil.isKeyPressed(MinecraftClient.getInstance().getWindow().getHandle(), GLFW.GLFW_KEY_LEFT_SHIFT) || InputUtil.isKeyPressed(MinecraftClient.getInstance().getWindow().getHandle(), GLFW.GLFW_KEY_RIGHT_SHIFT));
         final ItemStack cursor = this.handler.getCursorStack();
         final ItemStack slotIT = slot.getStack();
         if ((FeaturesClient.options().lightSameItem && !slotIT.isEmpty()
-                    && !cursor.isEmpty()
-                    && slot.getStack().getItem().equals(cursor.getItem()))
+                && !cursor.isEmpty()
+                && slot.getStack().getItem().equals(cursor.getItem()))
 //                ||  (maj && !slotIT.isEmpty() && this.focusedSlot != null
 //                    && !this.focusedSlot.getStack().isEmpty()
 //                    && this.focusedSlot.getStack().getItem().equals(slotIT.getItem()))
-        )
-        {
+        ) {
             fill(matrices, slot.x, slot.y, slot.x + 16, slot.y + 16, FeaturesClient.options().getLightSameItemColor());
         }
     }

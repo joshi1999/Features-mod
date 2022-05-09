@@ -16,12 +16,10 @@ import net.minecraft.text.MutableText;
  * Created the 27/07/2020 at 23:47
  */
 @Environment(EnvType.CLIENT)
-public abstract class Option
-{
+public abstract class Option {
     protected final MutableText prefix;
 
-    protected Option(MutableText prefix)
-    {
+    protected Option(MutableText prefix) {
         this.prefix = prefix;
     }
 

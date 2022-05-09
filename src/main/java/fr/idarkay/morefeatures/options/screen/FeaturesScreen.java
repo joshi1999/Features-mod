@@ -19,17 +19,17 @@ import org.jetbrains.annotations.Nullable;
  * @author Alois. B. (IDarKay),
  * Created the 26/07/2021 at 21:40
  */
-public abstract class FeaturesScreen extends Screen
-{
+public abstract class FeaturesScreen extends Screen {
 
-    @Nullable protected final Screen parent;
+    @Nullable
+    protected final Screen parent;
     protected final FeaturesGameOptions option;
     protected final Option[] options;
     protected final MenuButton[] subMenu;
 
 
-    protected FeaturesScreen(Text title, @Nullable Screen parent, FeaturesGameOptions featuresGameOptions, Option[] options, MenuButton[] subMenu)
-    {
+    protected FeaturesScreen(Text title, @Nullable Screen parent, FeaturesGameOptions featuresGameOptions,
+                             Option[] options, MenuButton[] subMenu) {
         super(title);
         this.options = options;
         this.subMenu = subMenu == null ? new MenuButton[0] : subMenu;
@@ -39,29 +39,25 @@ public abstract class FeaturesScreen extends Screen
     }
 
     @Override
-    protected void init()
-    {
+    protected void init() {
         int i = 0;
         int subMenuLength = this.subMenu.length;
         int optionLength = this.options.length;
 
-        for(int j = 0; j < optionLength + subMenuLength; ++j) {
+        for (int j = 0; j < optionLength + subMenuLength; ++j) {
             int width = this.width / 2 - 155 + i % 2 * 160;
             int height = this.height / 6 + 24 * (i >> 1);
-            if (j < subMenuLength)
-            {
+            if (j < subMenuLength) {
                 MenuButton menu = this.subMenu[j];
                 this.addDrawableChild(menu.createButton(this, this.option, width, height, 150));
-            }
-            else
-            {
+            } else {
                 Option option = this.options[j - subMenuLength];
                 this.addDrawableChild(option.createButton(this.option, width, height, 150));
             }
             ++i;
         }
-        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 6 + 24 * (i + 1) / 2, 200, 20, ScreenTexts.DONE,
-                (buttonWidget) -> this.client.setScreen(this.parent)));
+        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 6 + 24 * (i + 1) / 2, 200, 20,
+                ScreenTexts.DONE, (buttonWidget) -> this.client.setScreen(this.parent)));
     }
 
     @Override
@@ -72,8 +68,7 @@ public abstract class FeaturesScreen extends Screen
     }
 
     @Override
-    public void close()
-    {
+    public void close() {
         this.client.setScreen(parent);
     }
 

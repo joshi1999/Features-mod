@@ -15,8 +15,7 @@ import net.minecraft.text.TranslatableText;
  * @author Alois. B. (IDarKay),
  * Created the 06/08/2021 at 20:46
  */
-public abstract class Options
-{
+public abstract class Options {
     public static final BooleanOption BREAK_SAFE = new BooleanOption(
             new TranslatableText("options.more_features_id.breakSafe"),
             options -> options.breakSafe,
@@ -74,10 +73,10 @@ public abstract class Options
             (options, aDouble) -> options.lavaFogRemover = aDouble,
             (options, doubleOption) ->
             {
-                double  ratio = doubleOption.getRatio(doubleOption.get(options));
-                if(ratio <= 0.0D)
+                double ratio = doubleOption.getRatio(doubleOption.get(options));
+                if (ratio <= 0.0D)
                     return ScreenTexts.OFF;
-                else return new LiteralText (((int) (ratio * 100.0D)) + "%");
+                else return new LiteralText(((int) (ratio * 100.0D)) + "%");
             }
     );
     public static final DoubleOption AMBIENT_FOG = new DoubleOption(
@@ -87,10 +86,10 @@ public abstract class Options
             (options, aDouble) -> options.ambientFogRemover = aDouble,
             (options, doubleOption) ->
             {
-                double  ratio = doubleOption.getRatio(doubleOption.get(options));
-                if(ratio <= 0.0D)
+                double ratio = doubleOption.getRatio(doubleOption.get(options));
+                if (ratio <= 0.0D)
                     return ScreenTexts.OFF;
-                else return new LiteralText (((int) (ratio * 100.0D)) + "%");
+                else return new LiteralText(((int) (ratio * 100.0D)) + "%");
             }
     );
     public static final DoubleOption LIGHT8SAME_ITEM_RED = new DoubleOption(
@@ -98,35 +97,35 @@ public abstract class Options
             0.0d, 255.0d, 1.0f,
             options -> (double) options.rLightSameItem,
             (options, aDouble) -> options.rLightSameItem = aDouble.intValue(),
-            (options, doubleOption) -> new LiteralText ( String.valueOf((int) doubleOption.get(options)))
+            (options, doubleOption) -> new LiteralText(String.valueOf((int) doubleOption.get(options)))
     );
     public static final DoubleOption LIGHT8SAME_ITEM_GREEN = new DoubleOption(
             new TranslatableText("options.more_features_id.green"),
             0.0d, 255.0d, 1.0f,
             options -> (double) options.gLightSameItem,
             (options, aDouble) -> options.gLightSameItem = aDouble.intValue(),
-            (options, doubleOption) -> new LiteralText ( String.valueOf((int) doubleOption.get(options)))
+            (options, doubleOption) -> new LiteralText(String.valueOf((int) doubleOption.get(options)))
     );
     public static final DoubleOption LIGHT8SAME_ITEM_BLUE = new DoubleOption(
             new TranslatableText("options.more_features_id.blue"),
             0.0d, 255.0d, 1.0f,
             options -> (double) options.bLightSameItem,
             (options, aDouble) -> options.bLightSameItem = aDouble.intValue(),
-            (options, doubleOption) -> new LiteralText ( String.valueOf((int) doubleOption.get(options)))
+            (options, doubleOption) -> new LiteralText(String.valueOf((int) doubleOption.get(options)))
     );
     public static final DoubleOption LIGHT8SAME_ITEM_ALPHA = new DoubleOption(
             new TranslatableText("options.more_features_id.alpha"),
             0.0d, 255.0d, 1.0f,
             options -> (double) options.aLightSameItem,
             (options, aDouble) -> options.aLightSameItem = aDouble.intValue(),
-            (options, doubleOption) -> new LiteralText ( String.valueOf((int) doubleOption.get(options)))
+            (options, doubleOption) -> new LiteralText(String.valueOf((int) doubleOption.get(options)))
     );
     public static final DoubleOption PROTECT_DURABILITY = new DoubleOption(
             new TranslatableText("options.more_features_id.protectDurability"),
             5.0d, 100.0d, 1.0f,
             options -> (double) options.protectDurability,
             (options, aDouble) -> options.protectDurability = aDouble.intValue(),
-            (options, doubleOption) -> new LiteralText ( String.valueOf((int) doubleOption.get(options)))
+            (options, doubleOption) -> new LiteralText(String.valueOf((int) doubleOption.get(options)))
     );
     public static final DoubleOption EAT_AT = new DoubleOption(
             new TranslatableText("options." + FeaturesMod.MOD_ID + ".eatAt"),
@@ -140,14 +139,14 @@ public abstract class Options
             2.0d, 1200.0d, 2.0f,
             options -> options.attackCoolDown,
             (options, aDouble) -> options.attackCoolDown = aDouble,
-            (options, doubleOption) -> new LiteralText (((double) doubleOption.get(options) / 20.0d) + " seconds" )
+            (options, doubleOption) -> new LiteralText(((double) doubleOption.get(options) / 20.0d) + " seconds")
     );
     public static final DoubleOption USE_COOL_DOWN = new DoubleOption(
             new TranslatableText("options." + FeaturesMod.MOD_ID + ".useCoolDown"),
             1.0d, 1200.0d, 1.0f,
             options -> options.useCoolDown,
             (options, aDouble) -> options.useCoolDown = aDouble,
-            (options, doubleOption) -> new LiteralText (((double) doubleOption.get(options) / 20.0d) + " seconds" )
+            (options, doubleOption) -> new LiteralText(((double) doubleOption.get(options) / 20.0d) + " seconds")
     );
     public static final BooleanOption EAT = new BooleanOption(
             new TranslatableText("options." + FeaturesMod.MOD_ID + ".eat"),

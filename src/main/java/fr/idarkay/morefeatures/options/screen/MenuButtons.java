@@ -14,10 +14,9 @@ import net.minecraft.text.TranslatableText;
  * @author Alois. B. (IDarKay),
  * Created the 26/07/2021 at 22:09
  */
-public abstract class MenuButtons
-{
+public abstract class MenuButtons {
     private static final String MOD_ID = FeaturesMod.MOD_ID;
-    
+
     public static Text LIGHT_ITEM_TEXT = new TranslatableText("over_light." + MOD_ID + ".title");
     public static Text FEATURES_TEXT = new TranslatableText("features." + MOD_ID + ".title");
     public static Text BREAKAGE_PROTECTION_TEXT = new TranslatableText("breakSafe." + MOD_ID + ".title");

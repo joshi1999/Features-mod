@@ -22,13 +22,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  * Created the 28/07/2020 at 19:51
  */
 @Mixin(InGameOverlayRenderer.class)
-public abstract class InGameOverlayRendererMixin
-{
+public abstract class InGameOverlayRendererMixin {
     @Inject(method = "renderFireOverlay", at = @At("HEAD"), cancellable = true)
-    private static void renderFireOverlay(MinecraftClient minecraftClient, MatrixStack matrixStack, CallbackInfo ci)
-    {
-        if(FeaturesClient.options().hideFire && (!FeaturesClient.options().hideFireOnlyResistance || minecraftClient.player.hasStatusEffect(StatusEffects.FIRE_RESISTANCE)))
-        {
+    private static void renderFireOverlay(MinecraftClient minecraftClient, MatrixStack matrixStack, CallbackInfo ci) {
+        if (FeaturesClient.options().hideFire
+                && (!FeaturesClient.options().hideFireOnlyResistance
+                || minecraftClient.player.hasStatusEffect(StatusEffects.FIRE_RESISTANCE))) {
             ci.cancel();
         }
     }

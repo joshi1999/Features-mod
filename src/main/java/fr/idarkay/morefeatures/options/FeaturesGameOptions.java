@@ -21,8 +21,7 @@ import java.io.IOException;
  * Created the 27/07/2020 at 17:17
  */
 @Environment(EnvType.CLIENT)
-public class FeaturesGameOptions
-{
+public class FeaturesGameOptions {
 
     public double lavaFogRemover = 0.0d;
     public double ambientFogRemover = 0.0d;
@@ -44,16 +43,20 @@ public class FeaturesGameOptions
 
     // auto_farm
     public boolean eatOn = true;
-//    public boolean autoUseActivated = false;
+    //    public boolean autoUseActivated = false;
     public double eatLvlLimit = 16.0f;
     public double attackCoolDown = 40.0f;
     public double useCoolDown = 10.0f;
 
-    @Exclude public boolean autoAttackActivated = false;
-    @Exclude public boolean autoMineActivated = false;
-    @Exclude public boolean autoClickActivated = false;
+    @Exclude
+    public boolean autoAttackActivated = false;
+    @Exclude
+    public boolean autoMineActivated = false;
+    @Exclude
+    public boolean autoClickActivated = false;
 
-    @Exclude private File saveFile;
+    @Exclude
+    private File saveFile;
 
     private static final Gson gson = new GsonBuilder()
             .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
@@ -61,46 +64,38 @@ public class FeaturesGameOptions
             .setExclusionStrategies(new ExcludeExclusionStrategy())
             .create();
 
-    public int getLightSameItemColor()
-    {
+    public int getLightSameItemColor() {
         return (aLightSameItem % 256) << 24 | (rLightSameItem % 256) << 16 | (gLightSameItem % 256) << 8 | (bLightSameItem % 256);
     }
 
-    public boolean switchAttackActive()
-    {
+    public boolean switchAttackActive() {
         this.autoAttackActivated = !this.autoAttackActivated;
-        if (this.autoAttackActivated)
-        {
+        if (this.autoAttackActivated) {
             this.autoMineActivated = false;
             this.autoClickActivated = false;
         }
         return autoAttackActivated;
     }
 
-    public boolean switchMineActive()
-    {
+    public boolean switchMineActive() {
         this.autoMineActivated = !this.autoMineActivated;
-        if (this.autoMineActivated)
-        {
+        if (this.autoMineActivated) {
             this.autoClickActivated = false;
             this.autoAttackActivated = false;
         }
         return autoMineActivated;
     }
 
-    public boolean switchClickActive()
-    {
+    public boolean switchClickActive() {
         this.autoClickActivated = !this.autoClickActivated;
-        if (this.autoClickActivated)
-        {
+        if (this.autoClickActivated) {
             this.autoMineActivated = false;
             this.autoAttackActivated = false;
         }
         return autoClickActivated;
     }
 
-    public static FeaturesGameOptions load(File file)
-    {
+    public static FeaturesGameOptions load(File file) {
         FeaturesGameOptions config;
 
         if (file.exists()) {
@@ -118,18 +113,14 @@ public class FeaturesGameOptions
         return config;
     }
 
-    public void writeChanges()
-    {
+    public void writeChanges() {
         File dir = this.saveFile.getParentFile();
 
-        if (!dir.exists())
-        {
-            if (!dir.mkdirs())
-            {
+        if (!dir.exists()) {
+            if (!dir.mkdirs()) {
                 throw new RuntimeException("Could not create parent directories");
             }
-        } else if (!dir.isDirectory())
-        {
+        } else if (!dir.isDirectory()) {
             throw new RuntimeException("The parent file is not a directory");
         }
 
@@ -140,17 +131,14 @@ public class FeaturesGameOptions
         }
     }
 
-    static class ExcludeExclusionStrategy implements ExclusionStrategy
-    {
+    static class ExcludeExclusionStrategy implements ExclusionStrategy {
         @Override
-        public boolean shouldSkipField(FieldAttributes field)
-        {
+        public boolean shouldSkipField(FieldAttributes field) {
             return field.getAnnotation(Exclude.class) != null;
         }
 
         @Override
-        public boolean shouldSkipClass(Class<?> clazz)
-        {
+        public boolean shouldSkipClass(Class<?> clazz) {
             return false;
         }
     }

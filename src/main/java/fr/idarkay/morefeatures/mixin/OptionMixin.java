@@ -20,8 +20,7 @@ import org.spongepowered.asm.mixin.Shadow;
  * Created the 08/09/2020 at 23:26
  */
 @Mixin(Option.class)
-public abstract class OptionMixin
-{
+public abstract class OptionMixin {
     @Mutable
     @Shadow
     @Final
@@ -38,7 +37,7 @@ public abstract class OptionMixin
             if (d == 0.0D) {
                 return getText("options.gamma", new TranslatableText("options.gamma.min"));
             } else {
-                return getText2("options.gamma", (int)(d * 100.0D));
+                return getText2("options.gamma", (int) (d * 100.0D));
             }
         });
     }

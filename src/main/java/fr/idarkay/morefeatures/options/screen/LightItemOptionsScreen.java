@@ -17,13 +17,11 @@ import org.jetbrains.annotations.Nullable;
  * @author Alois. B. (IDarKay),
  * Created the 26/07/2021 at 21:40
  */
-public class LightItemOptionsScreen extends FeaturesScreen
-{
+public class LightItemOptionsScreen extends FeaturesScreen {
     private static final Option[] OPTIONS = new Option[]{Options.LIGHT_SAME_ITEM, Options.LIGHT8SAME_ITEM_RED,
             Options.LIGHT8SAME_ITEM_GREEN, Options.LIGHT8SAME_ITEM_BLUE, Options.LIGHT8SAME_ITEM_ALPHA};
 
-    public LightItemOptionsScreen(@Nullable Screen parent, FeaturesGameOptions featuresGameOptions)
-    {
+    public LightItemOptionsScreen(@Nullable Screen parent, FeaturesGameOptions featuresGameOptions) {
         super(MenuButtons.LIGHT_ITEM_TEXT, parent, featuresGameOptions, OPTIONS, null);
     }
 }

@@ -15,14 +15,12 @@ import java.util.Collections;
  * @author Alois. B. (IDarKay),
  * Created the 09/08/2020 at 15:01
  */
-public class FeaturesMod implements ModInitializer
-{
+public class FeaturesMod implements ModInitializer {
 
     public static final String MOD_ID = "more_features_id";
 
     @Override
-    public void onInitialize()
-    {
+    public void onInitialize() {
 
     }
 }
