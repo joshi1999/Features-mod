@@ -4,7 +4,6 @@ import fr.idarkay.morefeatures.options.FeaturesGameOptions;
 import fr.idarkay.morefeatures.options.Option;
 import fr.idarkay.morefeatures.options.Options;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.text.TranslatableText;
 import org.jetbrains.annotations.Nullable;
 
 /**

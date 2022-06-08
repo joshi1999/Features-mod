@@ -10,14 +10,15 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.MessageType;
+import net.minecraft.network.message.MessageType;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.Util;
 import net.minecraft.util.registry.Registry;
 
 import java.io.File;
+import java.util.Optional;
 
 @Environment(EnvType.CLIENT)
 public class FeaturesClient implements ClientModInitializer {
@@ -62,19 +63,20 @@ public class FeaturesClient implements ClientModInitializer {
                 } else if (KeyBindings.ATTACK_START_KEY.isPressed()) {
                     lastInput = System.currentTimeMillis();
                     boolean active = options().switchAttackActive();
-                    displayInHud(client, new TranslatableText("message." + MOD_ID + ".attack"
-                            + (active ? "On" : "Off")));
+                    String text = "message." + MOD_ID + ".attack" + (active ? "On" : "Off");
+                    displayInHud(client, text);
                 } else if (KeyBindings.MINE_START_KEY.isPressed()) {
                     lastInput = System.currentTimeMillis();
                     boolean active = options().switchMineActive();
                     client.options.attackKey.setPressed(false);
-                    displayInHud(client, new TranslatableText("message." + MOD_ID + ".mine" + (active ? "On" : "Off")));
+                    String text = "message." + MOD_ID + ".mine" + (active ? "On" : "Off");
+                    displayInHud(client, text);
                 } else if (KeyBindings.CLICK_START_KEY.isPressed()) {
                     lastInput = System.currentTimeMillis();
                     boolean active = options().switchClickActive();
                     client.options.attackKey.setPressed(false);
-                    displayInHud(client, new TranslatableText("message." + MOD_ID + ".click"
-                            + (active ? "On" : "Off")));
+                    String text = "message." + MOD_ID + ".click" + (active ? "On" : "Off");
+                    displayInHud(client, text);
                 } else if (KeyBindings.AUTO_FARM_OPTIONS_KEY.isPressed()) {
                     lastInput = System.currentTimeMillis();
                     client.setScreen(new AutoFarmScreen(null, options()));
@@ -82,8 +84,8 @@ public class FeaturesClient implements ClientModInitializer {
                     lastInput = System.currentTimeMillis();
                     options().breakSafe = !options().breakSafe;
                     lastShown = System.currentTimeMillis();
-                    displayInHud(client, new TranslatableText("message." + MOD_ID + ".break_protection"
-                            + (options().breakSafe ? "On" : "Off")));
+                    String text = "message." + MOD_ID + ".break_protection" + (options().breakSafe ? "On" : "Off");
+                    displayInHud(client, text);
                 }
             }
             if (System.currentTimeMillis() - lastShown > 3000) {
@@ -91,9 +93,10 @@ public class FeaturesClient implements ClientModInitializer {
                     if (!options().breakSafe) {
                         if (client != null && client.player != null && client.player.getMainHandStack() != null) {
                             ItemStack mainHand = client.player.getMainHandStack();
-                            if (mainHand.isEnchantable() || mainHand.hasEnchantments()) {
+                            if (mainHand.isDamageable()) {
                                 lastShown = System.currentTimeMillis();
-                                displayInHud(client, new TranslatableText("message." + MOD_ID + ".noBreakProtection"));
+                                String text = "message." + MOD_ID + ".noBreakProtection";
+                                displayInHud(client, text);
                             }
                         }
                     }
@@ -129,8 +132,9 @@ public class FeaturesClient implements ClientModInitializer {
         });
     }
 
-    private void displayInHud(MinecraftClient client, TranslatableText text) {
-        client.inGameHud.addChatMessage(MessageType.GAME_INFO, text, Util.NIL_UUID);
+    private void displayInHud(MinecraftClient client, String text) {
+        MutableText mutableText = Text.translatable(text);
+        client.inGameHud.onGameMessage(new MessageType(Optional.empty(), Optional.of(MessageType.DisplayRule.of()), Optional.empty()), mutableText); //Util.NIL_UUID
     }
 
     private void doEat(MinecraftClient client) {
@@ -150,7 +154,8 @@ public class FeaturesClient implements ClientModInitializer {
                         isEating = true;
                     } else isEating = false;
                 } else {
-                    displayInHud(client, new TranslatableText("message." + MOD_ID + ".noFood"));
+                    String text = "message." + MOD_ID + ".noFood";
+                    displayInHud(client, text);
                     isEating = false;
                 }
             } else isEating = false;
@@ -159,7 +164,8 @@ public class FeaturesClient implements ClientModInitializer {
 
     private void errorMessage(MinecraftClient client) {
         options().autoAttackActivated = false;
-        displayInHud(client, new TranslatableText("message." + MOD_ID + ".error"));
+        String text = "message." + MOD_ID + ".error";
+        displayInHud(client, text);
     }
 
     public static FeaturesGameOptions options() {

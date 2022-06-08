@@ -28,6 +28,7 @@ public class FeaturesGameOptions {
     public boolean breakSafe = true;
     public boolean breakSafeSound = true;
     public boolean breakSafeWarning = true;
+    public double featuresGamma = 5.0;
     public boolean hideFire = false;
     public boolean hideFireOnlyResistance = false;
     public boolean hidePumpkin = false;
