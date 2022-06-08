@@ -7,6 +7,7 @@
 
   ],
   "client": [
+    "BackgroundRendererMixin",
     "ClientPlayerInteractionManagerMixin",
     "ClientWorldPropertiesMixin",
     "HandledScreenMixin",
