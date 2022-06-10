@@ -18,7 +18,7 @@ Features-Mod
 
 ## 🧐 About <a name = "about"></a>
 
-Mod created by <a href="github.com/IdarKay">IdarKay</a> and maintained by <a href="github.com/joshi1999">joshi1999</a>
+Mod created by <a href="https://github.com/IdarKay">IdarKay</a> and maintained by <a href="https://github.com/joshi1999">joshi1999</a>
 
 #### Functionalities:
     - Edit Loccal Time (for timelaps)
