@@ -53,22 +53,4 @@ public abstract class GameOptionsMixin {
         }
         cir.setReturnValue(myGamma);
     }
-
-    /*
-    @ModifyVariable(method = "<init>(Lnet/minecraft/client/MinecraftClient;Ljava/io/File;)V", at = @At("STORE"), ordinal = 12)
-    private SimpleOption<Double> injected(SimpleOption<Double> option) {
-        option = new SimpleOption("options.gamma", SimpleOption.emptyTooltip(), (optionText, value) -> {
-            int i = (int) ((int) value * 100.0);
-            if (i == 0) {
-                return getGenericValueText(optionText, Text.translatable("options.gamma.min"));
-            } else if (i == 50) {
-                return getGenericValueText(optionText, Text.translatable("options.gamma.default"));
-            } else {
-                return i == 1000 ? getGenericValueText(optionText, Text.translatable("options.gamma.max")) : getGenericValueText(optionText, i);
-            }
-        }, SimpleOption.DoubleSliderCallbacks.INSTANCE, 0.5, (value) -> {
-        });
-        return option;
-    }
-    */
 }

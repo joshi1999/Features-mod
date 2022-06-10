@@ -3,7 +3,6 @@ package fr.idarkay.morefeatures;
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
 import fr.idarkay.morefeatures.options.screen.FeaturesOptionsScreen;
-import fr.idarkay.morefeatures.options.screen.MenuButtons;
 
 /**
  * File <b>FeaturesModApiImpl</b> located on fr.idarkay.morefeatures

@@ -2,8 +2,6 @@ package fr.idarkay.morefeatures;
 
 import net.fabricmc.api.ModInitializer;
 
-import java.util.Arrays;
-import java.util.Collections;
 
 /**
  * File <b>FeaturesMod</b> located on fr.idarkay.morefeatures
