@@ -39,12 +39,14 @@ import java.util.List;
  * Created the 28/07/2020 at 19:54
  */
 @Mixin(InGameHud.class)
-public abstract class InGameHudMixin extends DrawableHelper
-{
+public abstract class InGameHudMixin extends DrawableHelper {
 
-    @Shadow @Final private MinecraftClient client;
+    @Shadow
+    @Final
+    private MinecraftClient client;
 
-    @Shadow private int scaledWidth;
+    @Shadow
+    private int scaledWidth;
 
 //    @Shadow private int scaledHeight;
 //
@@ -52,15 +54,16 @@ public abstract class InGameHudMixin extends DrawableHelper
 //
 //    @Shadow protected abstract void drawTextBackground(MatrixStack matrixStack, TextRenderer textRenderer, int i, int j, int k);
 
-    @Shadow @Final private static Identifier PUMPKIN_BLUR;
+    @Shadow
+    @Final
+    private static Identifier PUMPKIN_BLUR;
 
-    @Shadow public abstract TextRenderer getTextRenderer();
+    @Shadow
+    public abstract TextRenderer getTextRenderer();
 
     @Inject(method = "renderOverlay", at = @At("HEAD"), cancellable = true)
-    private void renderOverlay(Identifier texture, float opacity, CallbackInfo ci)
-    {
-        if (FeaturesClient.options().hidePumpkin && texture == PUMPKIN_BLUR)
-        {
+    private void renderOverlay(Identifier texture, float opacity, CallbackInfo ci) {
+        if (FeaturesClient.options().hidePumpkin && texture == PUMPKIN_BLUR) {
             ci.cancel();
         }
     }
@@ -78,7 +81,7 @@ public abstract class InGameHudMixin extends DrawableHelper
 
     @Inject(method = "renderStatusEffectOverlay", at = @At("HEAD"), cancellable = true)
     protected void renderStatusEffectOverlay(MatrixStack matrixStack, CallbackInfo ci) {
-        if(!FeaturesClient.options().effectTime) return;
+        if (!FeaturesClient.options().effectTime) return;
         Collection<StatusEffectInstance> collection = this.client.player.getStatusEffects();
         if (!collection.isEmpty()) {
             TextRenderer textRenderer = this.getTextRenderer();
@@ -90,8 +93,8 @@ public abstract class InGameHudMixin extends DrawableHelper
             RenderSystem.setShaderTexture(0, HandledScreen.BACKGROUND_TEXTURE);
             Iterator var7 = Ordering.natural().reverse().sortedCopy(collection).iterator();
 
-            while(var7.hasNext()) {
-                StatusEffectInstance statusEffectInstance = (StatusEffectInstance)var7.next();
+            while (var7.hasNext()) {
+                StatusEffectInstance statusEffectInstance = (StatusEffectInstance) var7.next();
                 StatusEffect statusEffect = statusEffectInstance.getEffectType();
                 if (statusEffectInstance.shouldShowIcon()) {
                     int k = this.scaledWidth;
@@ -117,7 +120,10 @@ public abstract class InGameHudMixin extends DrawableHelper
                         this.drawTexture(matrixStack, k, l, 141, 166, 24, 24);
                         if (statusEffectInstance.getDuration() <= 200) {
                             int m = 10 - statusEffectInstance.getDuration() / 20;
-                            f = MathHelper.clamp((float)statusEffectInstance.getDuration() / 10.0F / 5.0F * 0.5F, 0.0F, 0.5F) + MathHelper.cos((float)statusEffectInstance.getDuration() * 3.1415927F / 5.0F) * MathHelper.clamp((float)m / 10.0F * 0.25F, 0.0F, 0.25F);
+                            f = MathHelper.clamp(
+                                    (float) statusEffectInstance.getDuration() / 10.0F / 5.0F * 0.5F, 0.0F, 0.5F)
+                                    + MathHelper.cos((float) statusEffectInstance.getDuration() * 3.1415927F / 5.0F)
+                                    * MathHelper.clamp((float) m / 10.0F * 0.25F, 0.0F, 0.25F);
                         }
                     }
 

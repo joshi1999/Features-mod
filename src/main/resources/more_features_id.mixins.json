@@ -14,7 +14,7 @@
     "InGameHudMixin",
     "InGameOverlayRendererMixin",
     "MinecraftClientMixin",
-    "OptionMixin",
+    "GameOptionsMixin",
     "OptionScreenMixin",
     "BeaconBlockEntityRendererMixin"
   ],

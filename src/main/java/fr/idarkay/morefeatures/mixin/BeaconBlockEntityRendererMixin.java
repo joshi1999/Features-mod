@@ -21,14 +21,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  * Created the 24/07/2021 at 18:40
  */
 @Mixin(BeaconBlockEntityRenderer.class)
-public abstract class BeaconBlockEntityRendererMixin
-{
+public abstract class BeaconBlockEntityRendererMixin {
 
     @Inject(method = "render(Lnet/minecraft/block/entity/BeaconBlockEntity;FLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;II)V", at = @At("HEAD"), cancellable = true)
-    public void render(BeaconBlockEntity beaconBlockEntity, float f, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, int j, CallbackInfo ci)
-    {
-        if (!FeaturesClient.options().renderBeaconBeam)
-        {
+    public void render(BeaconBlockEntity beaconBlockEntity, float f, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, int j, CallbackInfo ci) {
+        if (!FeaturesClient.options().renderBeaconBeam) {
             ci.cancel();
         }
     }

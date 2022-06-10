@@ -29,19 +29,19 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  * Created the 27/07/2020 at 01:31
  */
 @Mixin(ClientPlayerInteractionManager.class)
-public abstract class ClientPlayerInteractionManagerMixin
-{
+public abstract class ClientPlayerInteractionManagerMixin {
 
-    @Shadow @Final private MinecraftClient client;
+    @Shadow
+    @Final
+    private MinecraftClient client;
 
-    @Inject(method = "attackBlock", at = @At("HEAD"),  cancellable = true)
-    public void attackBlock(BlockPos pos, Direction direction, CallbackInfoReturnable<Boolean> ci)
-    {
-        if(FeaturesClient.options().breakSafe)
-        {
+    @Inject(method = "attackBlock", at = @At("HEAD"), cancellable = true)
+    public void attackBlock(BlockPos pos, Direction direction, CallbackInfoReturnable<Boolean> ci) {
+        if (FeaturesClient.options().breakSafe) {
             ItemStack mainHandItem = this.client.player.getStackInHand(Hand.MAIN_HAND);
-            if(mainHandItem != null && mainHandItem.isDamageable() &&  mainHandItem.getMaxDamage() - mainHandItem.getDamage() < FeaturesClient.options().protectDurability)
-            {
+            if (mainHandItem != null && mainHandItem.isDamageable()
+                    && mainHandItem.getMaxDamage() - mainHandItem.getDamage()
+                    < FeaturesClient.options().protectDurability) {
                 if (FeaturesClient.options().breakSafeSound)
                     this.client.player.playSound(FeaturesClient.BREAK_SAFE_EVENT, SoundCategory.AMBIENT, 1f, 1f);
                 ci.setReturnValue(false);
@@ -49,14 +49,13 @@ public abstract class ClientPlayerInteractionManagerMixin
         }
     }
 
-    @Inject(method =  "attackEntity", at = @At("HEAD"), cancellable = true)
-    public void attackEntity(PlayerEntity player, Entity target, CallbackInfo ci)
-    {
-        if(FeaturesClient.options().breakSafe)
-        {
+    @Inject(method = "attackEntity", at = @At("HEAD"), cancellable = true)
+    public void attackEntity(PlayerEntity player, Entity target, CallbackInfo ci) {
+        if (FeaturesClient.options().breakSafe) {
             ItemStack mainHandItem = this.client.player.getStackInHand(Hand.MAIN_HAND);
-            if(mainHandItem != null && mainHandItem.isDamageable() &&  mainHandItem.getMaxDamage() - mainHandItem.getDamage() < FeaturesClient.options().protectDurability)
-            {
+            if (mainHandItem != null && mainHandItem.isDamageable()
+                    && mainHandItem.getMaxDamage() - mainHandItem.getDamage()
+                    < FeaturesClient.options().protectDurability) {
                 if (FeaturesClient.options().breakSafeSound)
                     this.client.player.playSound(FeaturesClient.BREAK_SAFE_EVENT, SoundCategory.AMBIENT, 1f, 1f);
                 ci.cancel();

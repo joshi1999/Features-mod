@@ -2,27 +2,25 @@
 <h3>
 Features-Mod
 </h3>
-<h5>
-by IDarKay
-</h5>
 </div>
 
 ---
   [![Status](https://img.shields.io/badge/status-active-success.svg)]() 
   [![GitHub Release](https://img.shields.io/github/release/joshi1999/Features-mod.svg)](https://github.com/joshi1999/Features-mod/releases/latest)
-  [![Minecraft version](https://img.shields.io/badge/Minecraft_version-1.18.1%2B-informational)](https://www.minecraft.net/en-en/store/minecraft-java-edition)
-  
+  [![Minecraft version](https://img.shields.io/badge/Minecraft_version-1.19-informational)](https://www.minecraft.net/store/minecraft-java-edition)
+  [![Fabric Version](https://img.shields.io/badge/Fabric_version-0.55.1%2B1.19-informational)]()
 ---
 
 ## 📝 Table of Contents
 - [About](#about)
-- [Installation](#instaltion)
+- [Installation](#installation)
 - [Dependence](#dependence)
 
 ## 🧐 About <a name = "about"></a>
 
-This mod made by IDarKay
-####Functionalities: 
+Mod created by <a href="github.com/IdarKay">IdarKay</a> and maintained by <a href="github.com/joshi1999">joshi1999</a>
+
+#### Functionalities:
     - Edit Loccal Time (for timelaps)
     - Break Safe
     - lava fog remover
@@ -33,7 +31,7 @@ This mod made by IDarKay
     - maj + drag for quick move many item in inventory
     
 
-## 🛠️ Installation <a name = "instaltion"></a>
+## 🛠️ Installation <a name = "installation"></a>
      
 Download  <a href = "https://www.curseforge.com/minecraft/mc-mods/features-mod/files"> jar file </a> and add this
 in mods folder with <a href= "https://www.curseforge.com/minecraft/mc-mods/fabric-api"> fabric-api </a>.

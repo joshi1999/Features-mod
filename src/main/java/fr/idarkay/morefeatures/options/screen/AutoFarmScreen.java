@@ -16,13 +16,11 @@ import org.jetbrains.annotations.Nullable;
  * @author Alois. B. (IDarKay),
  * Created the 06/08/2021 at 20:23
  */
-public class AutoFarmScreen extends FeaturesScreen
-{
-    private static final Option[] OPTIONS = new Option[] {Options.ATTACK_COOL_DOWN, Options.USE_COOL_DOWN, Options.EAT_AT, Options.EAT,
-            Options.ACTIVATED, Options.AUTO_MINE_ACTIVATED, Options.AUTO_CLICK_ACTIVATED};
+public class AutoFarmScreen extends FeaturesScreen {
+    private static final Option[] OPTIONS = new Option[]{Options.ATTACK_COOL_DOWN, Options.USE_COOL_DOWN,
+            Options.EAT_AT, Options.EAT, Options.ACTIVATED, Options.AUTO_MINE_ACTIVATED, Options.AUTO_CLICK_ACTIVATED};
 
-    public AutoFarmScreen(@Nullable Screen parent, FeaturesGameOptions featuresGameOptions)
-    {
+    public AutoFarmScreen(@Nullable Screen parent, FeaturesGameOptions featuresGameOptions) {
         super(MenuButtons.BREAKAGE_PROTECTION_TEXT, parent, featuresGameOptions, OPTIONS, null);
     }
 }

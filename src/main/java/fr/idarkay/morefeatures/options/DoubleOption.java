@@ -22,8 +22,7 @@ import java.util.function.Function;
  * Created the 27/07/2020 at 23:46
  */
 @Environment(EnvType.CLIENT)
-public class DoubleOption extends Option
-{
+public class DoubleOption extends Option {
 
     private final double min;
     private final double max;
@@ -38,8 +37,7 @@ public class DoubleOption extends Option
                         float step,
                         Function<FeaturesGameOptions, Double> getter,
                         BiConsumer<FeaturesGameOptions, Double> setter,
-                        BiFunction<FeaturesGameOptions, DoubleOption, Text> displayStringGetter)
-    {
+                        BiFunction<FeaturesGameOptions, DoubleOption, Text> displayStringGetter) {
         super(prefix);
         this.min = min;
         this.max = max;
@@ -59,40 +57,35 @@ public class DoubleOption extends Option
 
     private double adjust(double value) {
         if (this.step > 0.0F) {
-            value = (double)(this.step * (float)Math.round(value / (double)this.step));
+            value = (double) (this.step * (float) Math.round(value / (double) this.step));
         }
 
         return MathHelper.clamp(value, this.min, this.max);
     }
 
-    public double getMin()
-    {
+    public double getMin() {
         return min;
     }
 
-    public double getMax()
-    {
+    public double getMax() {
         return max;
     }
 
-    public void set(FeaturesGameOptions options, double value)
-    {
+    public void set(FeaturesGameOptions options, double value) {
         setter.accept(options, value);
         options.writeChanges();
     }
 
-    public double get(FeaturesGameOptions options)
-    {
+    public double get(FeaturesGameOptions options) {
         return getter.apply(options);
     }
 
     public Text getDisplayString(FeaturesGameOptions options) {
-        return getDisplayPrefix().copy().append(this.displayStringGetter.apply(options,this));
+        return getDisplayPrefix().copy().append(this.displayStringGetter.apply(options, this));
     }
 
     @Override
-    public ClickableWidget createButton(FeaturesGameOptions options, int x, int y, int width)
-    {
+    public ClickableWidget createButton(FeaturesGameOptions options, int x, int y, int width) {
         return new DoubleSliderWidget(options, x, y, width, 20, this);
     }
 }

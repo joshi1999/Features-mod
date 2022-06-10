@@ -16,12 +16,11 @@ import org.jetbrains.annotations.Nullable;
  * @author Alois. B. (IDarKay),
  * Created the 26/07/2021 at 22:32
  */
-public class BreakageProtectionScreen extends FeaturesScreen
-{
-    private static final Option[] OPTIONS = new Option[] {Options.BREAK_SAFE, Options.BREAK_SAFE_WARNING, Options.PROTECT_DURABILITY, Options.PROTECT_SOUND};
+public class BreakageProtectionScreen extends FeaturesScreen {
+    private static final Option[] OPTIONS = new Option[]{Options.BREAK_SAFE, Options.BREAK_SAFE_WARNING,
+            Options.PROTECT_DURABILITY, Options.PROTECT_SOUND};
 
-    public BreakageProtectionScreen(@Nullable Screen parent, FeaturesGameOptions featuresGameOptions)
-    {
+    public BreakageProtectionScreen(@Nullable Screen parent, FeaturesGameOptions featuresGameOptions) {
         super(MenuButtons.BREAKAGE_PROTECTION_TEXT, parent, featuresGameOptions, OPTIONS, null);
     }
 }
