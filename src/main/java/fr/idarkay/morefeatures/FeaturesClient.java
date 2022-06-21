@@ -49,13 +49,12 @@ public class FeaturesClient implements ClientModInitializer {
             if (client.isPaused()) return;
             if (KeyBindings.OPEN_OPTIONS_KEYS.isPressed()) {
                 client.setScreen(new FeaturesOptionsScreen(null, FeaturesClient.options()));
-            } else if (FeaturesClient.options().localTime) {
-                if (KeyBindings.ADD_LOCAL_TIME_KEYS.isPressed()) {
-                    FeaturesClient.LOCAL_TIME += 500;
-                }
-                if (KeyBindings.REMOVE_LOCAL_TIME_KEYS.isPressed()) {
+            } else if (FeaturesClient.options().localTime
+                    && KeyBindings.ADD_LOCAL_TIME_KEYS.isPressed()) {
+                FeaturesClient.LOCAL_TIME += 500;
+            } else if (FeaturesClient.options().localTime
+                    && KeyBindings.REMOVE_LOCAL_TIME_KEYS.isPressed()) {
                     FeaturesClient.LOCAL_TIME -= 500;
-                }
             } else if (System.currentTimeMillis() - lastInput > 250) {
                 if (KeyBindings.ACTIVE_LOCAL_TIME.isPressed()) {
                     lastInput = System.currentTimeMillis();
