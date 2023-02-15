@@ -1,7 +1,5 @@
 package fr.idarkay.morefeatures.options;
 
-import fr.idarkay.morefeatures.FeaturesMod;
-import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 
 /**
