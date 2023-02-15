@@ -34,19 +34,6 @@ public abstract class KeyBindings {
             InputUtil.Type.KEYSYM,
             GLFW.GLFW_KEY_J,
             "key.categories." + MOD_ID);
-    public static final KeyBinding ATTACK_START_KEY = new KeyBinding("key." + MOD_ID + ".turnOn",
-            InputUtil.UNKNOWN_KEY.getCode(),
-            "key.categories." + MOD_ID);
-    public static final KeyBinding AUTO_FARM_OPTIONS_KEY = new KeyBinding("key." + MOD_ID + ".autoFarmOptions",
-            InputUtil.Type.KEYSYM,
-            GLFW.GLFW_KEY_O,
-            "key.categories." + MOD_ID);
-    public static final KeyBinding MINE_START_KEY = new KeyBinding("key." + MOD_ID + ".turnOnAutoMine",
-            InputUtil.UNKNOWN_KEY.getCode(),
-            "key.categories." + MOD_ID);
-    public static final KeyBinding CLICK_START_KEY = new KeyBinding("key." + MOD_ID + ".turnOnAutoRClick",
-            InputUtil.UNKNOWN_KEY.getCode(),
-            "key.categories." + MOD_ID);
     public static final KeyBinding TOGGLE_BREAK_PROTECTION = new KeyBinding("key." + MOD_ID + ".toggleBreakProtection",
             InputUtil.UNKNOWN_KEY.getCode(),
             "key.categories." + MOD_ID);
@@ -56,10 +43,6 @@ public abstract class KeyBindings {
         KeyBindingHelper.registerKeyBinding(ADD_LOCAL_TIME_KEYS);
         KeyBindingHelper.registerKeyBinding(REMOVE_LOCAL_TIME_KEYS);
         KeyBindingHelper.registerKeyBinding(ACTIVE_LOCAL_TIME);
-        KeyBindingHelper.registerKeyBinding(ATTACK_START_KEY);
-        KeyBindingHelper.registerKeyBinding(AUTO_FARM_OPTIONS_KEY);
-        KeyBindingHelper.registerKeyBinding(MINE_START_KEY);
-        KeyBindingHelper.registerKeyBinding(CLICK_START_KEY);
         KeyBindingHelper.registerKeyBinding(TOGGLE_BREAK_PROTECTION);
     }
 

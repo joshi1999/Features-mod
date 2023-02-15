@@ -126,45 +126,4 @@ public abstract class Options {
             (options, aDouble) -> options.protectDurability = aDouble.intValue(),
             (options, doubleOption) -> Text.literal(String.valueOf((int) doubleOption.get(options)))
     );
-    public static final DoubleOption EAT_AT = new DoubleOption(
-            Text.translatable("options." + FeaturesMod.MOD_ID + ".eatAt"),
-            0.0d, 19.0d, 0.5f,
-            options -> options.eatLvlLimit,
-            (options, aDouble) -> options.eatLvlLimit = aDouble,
-            (options, doubleOption) -> Text.literal(String.valueOf(doubleOption.get(options)))
-    );
-    public static final DoubleOption ATTACK_COOL_DOWN = new DoubleOption(
-            Text.translatable("options." + FeaturesMod.MOD_ID + ".attackCoolDown"),
-            2.0d, 1200.0d, 2.0f,
-            options -> options.attackCoolDown,
-            (options, aDouble) -> options.attackCoolDown = aDouble,
-            (options, doubleOption) -> Text.literal(((double) doubleOption.get(options) / 20.0d) + " seconds")
-    );
-    public static final DoubleOption USE_COOL_DOWN = new DoubleOption(
-            Text.translatable("options." + FeaturesMod.MOD_ID + ".useCoolDown"),
-            1.0d, 1200.0d, 1.0f,
-            options -> options.useCoolDown,
-            (options, aDouble) -> options.useCoolDown = aDouble,
-            (options, doubleOption) -> Text.literal(((double) doubleOption.get(options) / 20.0d) + " seconds")
-    );
-    public static final BooleanOption EAT = new BooleanOption(
-            Text.translatable("options." + FeaturesMod.MOD_ID + ".eat"),
-            options -> options.eatOn,
-            (options, aBoolean) -> options.eatOn = aBoolean
-    );
-    public static final BooleanOption ACTIVATED = new BooleanOption(
-            Text.translatable("options." + FeaturesMod.MOD_ID + ".activated"),
-            options -> options.autoAttackActivated,
-            (options, aBoolean) -> options.autoAttackActivated = aBoolean
-    );
-    public static final BooleanOption AUTO_MINE_ACTIVATED = new BooleanOption(
-            Text.translatable("options." + FeaturesMod.MOD_ID + ".autoMine"),
-            options -> options.autoMineActivated,
-            (options, aBoolean) -> options.autoMineActivated = aBoolean
-    );
-    public static final BooleanOption AUTO_CLICK_ACTIVATED = new BooleanOption(
-            Text.translatable("options." + FeaturesMod.MOD_ID + ".autoCLick"),
-            options -> options.autoClickActivated,
-            (options, aBoolean) -> options.autoClickActivated = aBoolean
-    );
 }

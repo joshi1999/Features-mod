@@ -42,20 +42,6 @@ public class FeaturesGameOptions {
     public int aLightSameItem = 0xA0;
     public int protectDurability = 10;
 
-    // auto_farm
-    public boolean eatOn = true;
-    //    public boolean autoUseActivated = false;
-    public double eatLvlLimit = 16.0f;
-    public double attackCoolDown = 40.0f;
-    public double useCoolDown = 10.0f;
-
-    @Exclude
-    public boolean autoAttackActivated = false;
-    @Exclude
-    public boolean autoMineActivated = false;
-    @Exclude
-    public boolean autoClickActivated = false;
-
     @Exclude
     private File saveFile;
 
@@ -67,33 +53,6 @@ public class FeaturesGameOptions {
 
     public int getLightSameItemColor() {
         return (aLightSameItem % 256) << 24 | (rLightSameItem % 256) << 16 | (gLightSameItem % 256) << 8 | (bLightSameItem % 256);
-    }
-
-    public boolean switchAttackActive() {
-        this.autoAttackActivated = !this.autoAttackActivated;
-        if (this.autoAttackActivated) {
-            this.autoMineActivated = false;
-            this.autoClickActivated = false;
-        }
-        return autoAttackActivated;
-    }
-
-    public boolean switchMineActive() {
-        this.autoMineActivated = !this.autoMineActivated;
-        if (this.autoMineActivated) {
-            this.autoClickActivated = false;
-            this.autoAttackActivated = false;
-        }
-        return autoMineActivated;
-    }
-
-    public boolean switchClickActive() {
-        this.autoClickActivated = !this.autoClickActivated;
-        if (this.autoClickActivated) {
-            this.autoMineActivated = false;
-            this.autoAttackActivated = false;
-        }
-        return autoClickActivated;
     }
 
     public static FeaturesGameOptions load(File file) {

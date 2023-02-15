@@ -2,7 +2,6 @@ package fr.idarkay.morefeatures;
 
 import fr.idarkay.morefeatures.options.FeaturesGameOptions;
 import fr.idarkay.morefeatures.options.Options;
-import fr.idarkay.morefeatures.options.screen.AutoFarmScreen;
 import fr.idarkay.morefeatures.options.screen.FeaturesOptionsScreen;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -58,26 +57,6 @@ public class FeaturesClient implements ClientModInitializer {
                 if (KeyBindings.ACTIVE_LOCAL_TIME.isPressed()) {
                     lastInput = System.currentTimeMillis();
                     Options.LOCAL_IME.set(FeaturesClient.options());
-                } else if (KeyBindings.ATTACK_START_KEY.isPressed()) {
-                    lastInput = System.currentTimeMillis();
-                    boolean active = options().switchAttackActive();
-                    String text = "message." + MOD_ID + ".attack" + (active ? "On" : "Off");
-                    displayInHud(client, text);
-                } else if (KeyBindings.MINE_START_KEY.isPressed()) {
-                    lastInput = System.currentTimeMillis();
-                    boolean active = options().switchMineActive();
-                    client.options.attackKey.setPressed(false);
-                    String text = "message." + MOD_ID + ".mine" + (active ? "On" : "Off");
-                    displayInHud(client, text);
-                } else if (KeyBindings.CLICK_START_KEY.isPressed()) {
-                    lastInput = System.currentTimeMillis();
-                    boolean active = options().switchClickActive();
-                    client.options.attackKey.setPressed(false);
-                    String text = "message." + MOD_ID + ".click" + (active ? "On" : "Off");
-                    displayInHud(client, text);
-                } else if (KeyBindings.AUTO_FARM_OPTIONS_KEY.isPressed()) {
-                    lastInput = System.currentTimeMillis();
-                    client.setScreen(new AutoFarmScreen(null, options()));
                 } else if (KeyBindings.TOGGLE_BREAK_PROTECTION.isPressed()) {
                     lastInput = System.currentTimeMillis();
                     options().breakSafe = !options().breakSafe;
@@ -100,70 +79,12 @@ public class FeaturesClient implements ClientModInitializer {
                     }
                 }
             }
-            if (options().autoAttackActivated) {
-                countDown--;
-                if (countDown > 0) {
-                    countDown = (int) options().attackCoolDown;
-                    if (client instanceof PublicMinecraftClientEditor) {
-                        ((PublicMinecraftClientEditor) client).publicDoAttack();
-                    } else {
-                        errorMessage(client);
-                        return;
-                    }
-                }
-                doEat(client);
-            } else if (options().autoMineActivated) {
-                client.options.attackKey.setPressed(true);
-                doEat(client);
-            } else if (options().autoClickActivated) {
-                countDown--;
-                if (countDown <= 0) {
-                    countDown = (int) options().useCoolDown;
-                    if (client instanceof PublicMinecraftClientEditor) {
-                        ((PublicMinecraftClientEditor) client).publicDoItemUse();
-                    } else {
-                        errorMessage(client);
-                        isEating = false;
-                    }
-                }
-            }
         });
     }
 
     private void displayInHud(MinecraftClient client, String text) {
         MutableText mutableText = Text.translatable(text);
         client.getMessageHandler().onGameMessage(mutableText, true); //Util.NIL_UUID
-    }
-
-    private void doEat(MinecraftClient client) {
-        if (options().eatOn && !client.player.isSpectator() && !client.player.isCreative()) {
-            if (client.currentScreen == null || client.currentScreen.passEvents) {
-                if (client.player.getOffHandStack().getItem().isFood()) {
-                    if (client.player.getHungerManager().getFoodLevel() <= options().eatLvlLimit) {
-                        if (!client.player.isUsingItem()) {
-                            if (client instanceof PublicMinecraftClientEditor) {
-                                ((PublicMinecraftClientEditor) client).publicDoItemUse();
-                            } else {
-                                errorMessage(client);
-                                isEating = false;
-                                return;
-                            }
-                        }
-                        isEating = true;
-                    } else isEating = false;
-                } else {
-                    String text = "message." + MOD_ID + ".noFood";
-                    displayInHud(client, text);
-                    isEating = false;
-                }
-            } else isEating = false;
-        } else isEating = false;
-    }
-
-    private void errorMessage(MinecraftClient client) {
-        options().autoAttackActivated = false;
-        String text = "message." + MOD_ID + ".error";
-        displayInHud(client, text);
     }
 
     public static FeaturesGameOptions options() {
