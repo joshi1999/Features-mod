@@ -56,8 +56,14 @@ public abstract class FeaturesScreen extends Screen {
             }
             ++i;
         }
-        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 6 + 24 * (i + 1) / 2, 200, 20,
-                ScreenTexts.DONE, (buttonWidget) -> this.client.setScreen(this.parent)));
+        ButtonWidget.Builder builder = ButtonWidget.builder(ScreenTexts.DONE, button ->
+        {
+            this.option.writeChanges();
+            this.client.setScreen(this.parent);
+        });
+        builder.position(this.width / 2 - 100, this.height / 6 + 24 * (i + 1) / 2);
+        builder.width(200);
+        this.addDrawableChild(builder.build());
     }
 
     @Override

@@ -31,8 +31,9 @@ public class MenuButton {
     }
 
     public ClickableWidget createButton(@Nullable Screen parent, FeaturesGameOptions options, int x, int y, int width) {
-        return new ButtonWidget(x, y, width, 20, this.name,
-                button -> MinecraftClient.getInstance().setScreen(creator.apply(parent, options)));
+        ButtonWidget.Builder builder = ButtonWidget.builder(this.name, button ->
+                MinecraftClient.getInstance().setScreen(creator.apply(parent, options)));
+        return builder.position(x, y).width(width).build();
     }
 
 }

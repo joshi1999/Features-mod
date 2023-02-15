@@ -7,13 +7,10 @@
 
   ],
   "client": [
-    "BackgroundRendererMixin",
     "ClientPlayerInteractionManagerMixin",
     "ClientWorldPropertiesMixin",
     "HandledScreenMixin",
     "InGameHudMixin",
-    "InGameOverlayRendererMixin",
-    "MinecraftClientMixin",
     "GameOptionsMixin",
     "OptionScreenMixin",
     "BeaconBlockEntityRendererMixin"

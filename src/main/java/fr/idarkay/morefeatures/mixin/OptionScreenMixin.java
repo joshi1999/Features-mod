@@ -29,7 +29,7 @@ public abstract class OptionScreenMixin extends Screen {
     @Inject(method = "init", at = @At("RETURN"))
     protected void init(CallbackInfo ci) {
         if (this.client != null && this.client.world != null) {
-            int x = this.width / 2 - 155;
+            int x = this.width / 2 + 5;
             int y = this.height / 6 + 144 - 6;
             int w = 150;
             this.addDrawableChild(MenuButtons.FEATURES.createButton(this, FeaturesClient.options(), x, y, w));
