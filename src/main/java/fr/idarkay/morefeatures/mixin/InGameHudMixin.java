@@ -61,13 +61,6 @@ public abstract class InGameHudMixin extends DrawableHelper {
     @Shadow
     public abstract TextRenderer getTextRenderer();
 
-    @Inject(method = "renderOverlay", at = @At("HEAD"), cancellable = true)
-    private void renderOverlay(Identifier texture, float opacity, CallbackInfo ci) {
-        if (FeaturesClient.options().hidePumpkin && texture == PUMPKIN_BLUR) {
-            ci.cancel();
-        }
-    }
-
 //    @ModifyVariable(method = "renderStatusEffectOverlay", at = @At(value = "INVOKE", target = "Ljava/util/List;add(Ljava/lang/Object;)Z"))
 //    private Runnable modifyListRunnable(Runnable prev)
 //    {

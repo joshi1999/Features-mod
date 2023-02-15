@@ -23,15 +23,10 @@ import java.io.IOException;
 @Environment(EnvType.CLIENT)
 public class FeaturesGameOptions {
 
-    public double lavaFogRemover = 0.0d;
-    public double ambientFogRemover = 0.0d;
     public boolean breakSafe = true;
     public boolean breakSafeSound = true;
     public boolean breakSafeWarning = true;
     public double featuresGamma = 5.0;
-    public boolean hideFire = false;
-    public boolean hideFireOnlyResistance = false;
-    public boolean hidePumpkin = false;
     public boolean effectTime = true;
     public boolean localTime = false;
     public boolean renderBeaconBeam = true;

@@ -30,21 +30,6 @@ public abstract class Options {
             options -> options.lightSameItem,
             (options, aBoolean) -> options.lightSameItem = aBoolean
     );
-    public static final BooleanOption HIDE_FIRE = new BooleanOption(
-            Text.translatable("options.more_features_id.fireEffect"),
-            options -> options.hideFire,
-            (options, aBoolean) -> options.hideFire = aBoolean
-    );
-    public static final BooleanOption HIDE_FIRE_ONLY_ON_RESISTANCE = new BooleanOption(
-            Text.translatable("options.more_features_id.fireEffectOnResistance"),
-            options -> options.hideFireOnlyResistance,
-            (options, aBoolean) -> options.hideFireOnlyResistance = aBoolean
-    );
-    public static final BooleanOption HIDE_PUMPKIN = new BooleanOption(
-            Text.translatable("options.more_features_id.hidePumpkin"),
-            options -> options.hidePumpkin,
-            (options, aBoolean) -> options.hidePumpkin = aBoolean
-    );
     public static final BooleanOption SHOW_EFFECT_TIME = new BooleanOption(
             Text.translatable("options.more_features_id.potionTime"),
             options -> options.effectTime,
@@ -64,32 +49,6 @@ public abstract class Options {
             Text.translatable("options.more_features_id.renderBeaconBeam"),
             options -> options.renderBeaconBeam,
             (options, aBoolean) -> options.renderBeaconBeam = aBoolean
-    );
-    public static final DoubleOption FOG_LAVA = new DoubleOption(
-            Text.translatable("options.more_features_id.removeLavaFog"),
-            0.0d, 1.0d, 0.0f,
-            options -> options.lavaFogRemover,
-            (options, aDouble) -> options.lavaFogRemover = aDouble,
-            (options, doubleOption) ->
-            {
-                double ratio = doubleOption.getRatio(doubleOption.get(options));
-                if (ratio <= 0.0D)
-                    return ScreenTexts.OFF;
-                else return Text.literal(((int) (ratio * 100.0D)) + "%");
-            }
-    );
-    public static final DoubleOption AMBIENT_FOG = new DoubleOption(
-            Text.translatable("options.more_features_id.removeAmbientFog"),
-            0.0d, 1.0d, 0.0f,
-            options -> options.ambientFogRemover,
-            (options, aDouble) -> options.ambientFogRemover = aDouble,
-            (options, doubleOption) ->
-            {
-                double ratio = doubleOption.getRatio(doubleOption.get(options));
-                if (ratio <= 0.0D)
-                    return ScreenTexts.OFF;
-                else return Text.literal(((int) (ratio * 100.0D)) + "%");
-            }
     );
     public static final DoubleOption LIGHT8SAME_ITEM_RED = new DoubleOption(
             Text.translatable("options.more_features_id.red"),
