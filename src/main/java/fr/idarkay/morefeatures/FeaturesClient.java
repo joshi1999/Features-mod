@@ -10,15 +10,14 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.message.MessageType;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 import java.io.File;
-import java.util.Optional;
 
 @Environment(EnvType.CLIENT)
 public class FeaturesClient implements ClientModInitializer {
@@ -27,7 +26,7 @@ public class FeaturesClient implements ClientModInitializer {
 
     //sound
     public static final Identifier BREAK_SAFE_ID = new Identifier("more_features_id:break_safe");
-    public static final SoundEvent BREAK_SAFE_EVENT = new SoundEvent(BREAK_SAFE_ID);
+    public static final SoundEvent BREAK_SAFE_EVENT = SoundEvent.of(BREAK_SAFE_ID);
     public static long LOCAL_TIME = 12000;
     public static boolean isEating = false;
 
@@ -38,7 +37,7 @@ public class FeaturesClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        Registry.register(Registry.SOUND_EVENT, FeaturesClient.BREAK_SAFE_ID, BREAK_SAFE_EVENT);
+        Registry.register(Registries.SOUND_EVENT, FeaturesClient.BREAK_SAFE_ID, BREAK_SAFE_EVENT);
         KeyBindings.init();
 
         startClientTickEvents();
@@ -133,7 +132,7 @@ public class FeaturesClient implements ClientModInitializer {
 
     private void displayInHud(MinecraftClient client, String text) {
         MutableText mutableText = Text.translatable(text);
-        client.inGameHud.onGameMessage(new MessageType(Optional.empty(), Optional.of(MessageType.DisplayRule.of()), Optional.empty()), mutableText); //Util.NIL_UUID
+        client.getMessageHandler().onGameMessage(mutableText, true); //Util.NIL_UUID
     }
 
     private void doEat(MinecraftClient client) {

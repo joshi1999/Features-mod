@@ -47,11 +47,14 @@ public class BooleanOption extends Option {
 
     @Override
     public ClickableWidget createButton(FeaturesGameOptions options, int x, int y, int width) {
-        return new ButtonWidget(x, y, width, 20, getDisplayString(options), button ->
+        ButtonWidget.Builder builder = ButtonWidget.builder(getDisplayString(options), button ->
         {
             set(options);
             button.setMessage(getDisplayString(options));
         });
+        builder.position(x, y);
+        builder.width(width);
+        return builder.build();
     }
 
     public Text getDisplayString(FeaturesGameOptions options) {
