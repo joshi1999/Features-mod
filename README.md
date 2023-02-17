@@ -7,8 +7,8 @@ Features-Mod
 ---
   [![Status](https://img.shields.io/badge/status-active-success.svg)]() 
   [![GitHub Release](https://img.shields.io/github/release/joshi1999/Features-mod.svg)](https://github.com/joshi1999/Features-mod/releases/latest)
-  [![Minecraft version](https://img.shields.io/badge/Minecraft_version-1.19-informational)](https://www.minecraft.net/store/minecraft-java-edition)
-  [![Fabric Version](https://img.shields.io/badge/Fabric_version-0.55.1%2B1.19-informational)]()
+  [![Minecraft version](https://img.shields.io/badge/Minecraft_version-1.19.3-informational)](https://www.minecraft.net/store/minecraft-java-edition)
+  [![Fabric Version](https://img.shields.io/badge/Fabric_version-0.73.2%2B1.19.3-informational)]()
 ---
 
 ## 📝 Table of Contents
@@ -23,9 +23,6 @@ Mod created by <a href="https://github.com/IdarKay">IdarKay</a> and maintained b
 #### Functionalities:
     - Edit Loccal Time (for timelaps)
     - Break Safe
-    - lava fog remover
-    - fire effect remover
-    - head pumpkin remover
     - add time bellow potion effect in main hud
     - ctrl + shift + drop in inventory for drop all item with same ID
     - maj + drag for quick move many item in inventory
