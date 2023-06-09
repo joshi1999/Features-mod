@@ -15,6 +15,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffectUtil;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import org.spongepowered.asm.mixin.Final;
@@ -128,9 +129,9 @@ public abstract class InGameHudMixin extends DrawableHelper {
                     list.add(() -> {
                         RenderSystem.setShaderTexture(0, sprite.getAtlasId());
                         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, finalF);
-                        drawSprite(matrixStack, finalK + 3, finalL + 3, this.getZOffset(), 18, 18, sprite);
+                        drawSprite(matrixStack, finalK + 3, finalL + 3, 0, 18, 18, sprite);
 
-                        String time = StatusEffectUtil.durationToString(statusEffectInstance, 1.0F);
+                        Text time = StatusEffectUtil.durationToString(statusEffectInstance, 1.0F);
                         textRenderer.drawWithShadow(matrixStack, time, finalK, finalL + 25, 8355711);
                     });
                 }

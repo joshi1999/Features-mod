@@ -2,10 +2,14 @@ package fr.idarkay.morefeatures.options.screen;
 
 import fr.idarkay.morefeatures.options.FeaturesGameOptions;
 import fr.idarkay.morefeatures.options.Option;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screen.option.GameOptionsScreen;
+import net.minecraft.client.gui.widget.OptionListWidget;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.util.math.MatrixStack;
+
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.Nullable;
 
@@ -19,7 +23,7 @@ import org.jetbrains.annotations.Nullable;
  * @author Alois. B. (IDarKay),
  * Created the 26/07/2021 at 21:40
  */
-public abstract class FeaturesScreen extends Screen {
+public abstract class FeaturesScreen extends GameOptionsScreen {
 
     @Nullable
     protected final Screen parent;
@@ -30,10 +34,10 @@ public abstract class FeaturesScreen extends Screen {
 
     protected FeaturesScreen(Text title, @Nullable Screen parent, FeaturesGameOptions featuresGameOptions,
                              Option[] options, MenuButton[] subMenu) {
-        super(title);
+        super(parent, MinecraftClient.getInstance().options, title);
         this.options = options;
         this.subMenu = subMenu == null ? new MenuButton[0] : subMenu;
-        this.passEvents = true;
+        this.passEvents = false;
         this.parent = parent;
         this.option = featuresGameOptions;
     }
@@ -69,7 +73,7 @@ public abstract class FeaturesScreen extends Screen {
     @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         this.renderBackground(matrices);
-        drawCenteredText(matrices, this.textRenderer, this.title, this.width / 2, 15, 16777215);
+        drawCenteredTextWithShadow(matrices, this.textRenderer, this.title, this.width / 2, 15, 16777215);
         super.render(matrices, mouseX, mouseY, delta);
     }
 
