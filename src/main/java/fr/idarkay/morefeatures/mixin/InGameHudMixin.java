@@ -5,13 +5,13 @@ import com.google.common.collect.Ordering;
 import com.mojang.blaze3d.systems.RenderSystem;
 import fr.idarkay.morefeatures.FeaturesClient;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.font.MultilineText;
 import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.gui.DrawableHelper;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.texture.StatusEffectSpriteManager;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffectUtil;
@@ -40,7 +40,7 @@ import java.util.List;
  * Created the 28/07/2020 at 19:54
  */
 @Mixin(InGameHud.class)
-public abstract class InGameHudMixin extends DrawableHelper {
+public abstract class InGameHudMixin {
 
     @Shadow
     @Final
@@ -59,6 +59,8 @@ public abstract class InGameHudMixin extends DrawableHelper {
     @Final
     private static Identifier PUMPKIN_BLUR;
 
+    private static final Identifier INVENTORY_TEXTURE = new Identifier("textures/gui/container/inventory.png");
+
     @Shadow
     public abstract TextRenderer getTextRenderer();
 
@@ -74,7 +76,7 @@ public abstract class InGameHudMixin extends DrawableHelper {
 //    }
 
     @Inject(method = "renderStatusEffectOverlay", at = @At("HEAD"), cancellable = true)
-    protected void renderStatusEffectOverlay(MatrixStack matrixStack, CallbackInfo ci) {
+    protected void renderStatusEffectOverlay(DrawContext context, CallbackInfo ci) {
         if (!FeaturesClient.options().effectTime) return;
         Collection<StatusEffectInstance> collection = this.client.player.getStatusEffects();
         if (!collection.isEmpty()) {
@@ -109,9 +111,9 @@ public abstract class InGameHudMixin extends DrawableHelper {
                     RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
                     float f = 1.0F;
                     if (statusEffectInstance.isAmbient()) {
-                        this.drawTexture(matrixStack, k, l, 165, 166, 24, 24);
+                        context.drawTexture(INVENTORY_TEXTURE, k, l, 165, 166, 24, 24);
                     } else {
-                        this.drawTexture(matrixStack, k, l, 141, 166, 24, 24);
+                        context.drawTexture(INVENTORY_TEXTURE, k, l, 141, 166, 24, 24);
                         if (statusEffectInstance.getDuration() <= 200) {
                             int m = 10 - statusEffectInstance.getDuration() / 20;
                             f = MathHelper.clamp(
@@ -129,10 +131,10 @@ public abstract class InGameHudMixin extends DrawableHelper {
                     list.add(() -> {
                         RenderSystem.setShaderTexture(0, sprite.getAtlasId());
                         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, finalF);
-                        drawSprite(matrixStack, finalK + 3, finalL + 3, 0, 18, 18, sprite);
+                        context.drawSprite(finalK + 3, finalL + 3, 0, 18, 18, sprite);
 
-                        Text time = StatusEffectUtil.durationToString(statusEffectInstance, 1.0F);
-                        textRenderer.drawWithShadow(matrixStack, time, finalK, finalL + 25, 8355711);
+                        Text time = StatusEffectUtil.getDurationText(statusEffectInstance, 1.0F);
+                        MultilineText.create(textRenderer, time).drawWithShadow(context, finalK, finalL + 25, 1, 8355711);
                     });
                 }
             }

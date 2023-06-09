@@ -1,6 +1,7 @@
 package fr.idarkay.morefeatures.mixin;
 
 import fr.idarkay.morefeatures.FeaturesClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.screen.ingame.ScreenHandlerProvider;
@@ -103,9 +104,9 @@ public abstract class HandledScreenMixin<T extends ScreenHandler> extends Screen
         }
     }
 
-    @Inject(method = "drawSlot(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/screen/slot/Slot;)V",
+    @Inject(method = "drawSlot(Lnet/minecraft/client/gui/DrawContext;Lnet/minecraft/screen/slot/Slot;)V",
             at = @At("RETURN"))
-    private void drawSlot(MatrixStack matrices, Slot slot, CallbackInfo ci) {
+    private void drawSlot(DrawContext context, Slot slot, CallbackInfo ci) {
 //        final boolean maj = (InputUtil.isKeyPressed(MinecraftClient.getInstance().getWindow().getHandle(), GLFW.GLFW_KEY_LEFT_SHIFT) || InputUtil.isKeyPressed(MinecraftClient.getInstance().getWindow().getHandle(), GLFW.GLFW_KEY_RIGHT_SHIFT));
         final ItemStack cursor = this.handler.getCursorStack();
         final ItemStack slotIT = slot.getStack();
@@ -116,7 +117,7 @@ public abstract class HandledScreenMixin<T extends ScreenHandler> extends Screen
 //                    && !this.focusedSlot.getStack().isEmpty()
 //                    && this.focusedSlot.getStack().getItem().equals(slotIT.getItem()))
         ) {
-            fill(matrices, slot.x, slot.y, slot.x + 16, slot.y + 16, FeaturesClient.options().getLightSameItemColor());
+            context.fill(slot.x, slot.y, slot.x + 16, slot.y + 16, FeaturesClient.options().getLightSameItemColor());
         }
     }
 

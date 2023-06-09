@@ -7,8 +7,8 @@ Features-Mod
 ---
   [![Status](https://img.shields.io/badge/status-active-success.svg)]() 
   [![GitHub Release](https://img.shields.io/github/release/joshi1999/Features-mod.svg)](https://github.com/joshi1999/Features-mod/releases/latest)
-  [![Minecraft version](https://img.shields.io/badge/Minecraft_version-1.19.4-informational)](https://www.minecraft.net/store/minecraft-java-edition)
-  [![Fabric Version](https://img.shields.io/badge/Fabric_version-0.83.0%2B1.19.4-informational)]()
+  [![Minecraft version](https://img.shields.io/badge/Minecraft_version-1.20-informational)](https://www.minecraft.net/store/minecraft-java-edition)
+  [![Fabric Version](https://img.shields.io/badge/Fabric_version-0.83.0%2B1.20-informational)]()
 ---
 
 ## 📝 Table of Contents

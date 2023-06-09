@@ -3,6 +3,7 @@ package fr.idarkay.morefeatures.options.screen;
 import fr.idarkay.morefeatures.options.FeaturesGameOptions;
 import fr.idarkay.morefeatures.options.Option;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.option.GameOptionsScreen;
 import net.minecraft.client.gui.widget.OptionListWidget;
@@ -37,7 +38,6 @@ public abstract class FeaturesScreen extends GameOptionsScreen {
         super(parent, MinecraftClient.getInstance().options, title);
         this.options = options;
         this.subMenu = subMenu == null ? new MenuButton[0] : subMenu;
-        this.passEvents = false;
         this.parent = parent;
         this.option = featuresGameOptions;
     }
@@ -71,10 +71,10 @@ public abstract class FeaturesScreen extends GameOptionsScreen {
     }
 
     @Override
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        this.renderBackground(matrices);
-        drawCenteredTextWithShadow(matrices, this.textRenderer, this.title, this.width / 2, 15, 16777215);
-        super.render(matrices, mouseX, mouseY, delta);
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        this.renderBackground(context);
+        context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 15, 16777215);
+        super.render(context, mouseX, mouseY, delta);
     }
 
     @Override
