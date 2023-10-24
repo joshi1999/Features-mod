@@ -30,7 +30,7 @@ Mod created by <a href="https://github.com/IdarKay">IdarKay</a> and maintained b
 
 ## 🛠️ Installation <a name = "installation"></a>
      
-Download  <a href = "https://www.curseforge.com/minecraft/mc-mods/features-mod/files"> jar file </a> and add this
+Download jar file from releases and add this
 in mods folder with <a href= "https://www.curseforge.com/minecraft/mc-mods/fabric-api"> fabric-api </a>.
 
 Don't forget install fabric loader 
