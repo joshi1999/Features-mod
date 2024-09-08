@@ -33,4 +33,9 @@ public class FeaturesOptionsScreen extends FeaturesScreen {
     public FeaturesOptionsScreen(@Nullable Screen parent, FeaturesGameOptions featuresGameOptions) {
         super(MenuButtons.FEATURES_TEXT, parent, featuresGameOptions, OPTIONS, SUB_MENU_BUTTONS);
     }
+
+    @Override
+    protected void addOptions() {
+
+    }
 }

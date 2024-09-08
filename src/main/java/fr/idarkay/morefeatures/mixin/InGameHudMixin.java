@@ -10,11 +10,13 @@ import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
+import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.texture.StatusEffectSpriteManager;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffectUtil;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
@@ -46,8 +48,9 @@ public abstract class InGameHudMixin {
     @Final
     private MinecraftClient client;
 
-    @Shadow
-    private int scaledWidth;
+    //Deprecated since 1.21
+    //@Shadow
+    //private int scaledWidth;
 
 //    @Shadow private int scaledHeight;
 //
@@ -59,7 +62,8 @@ public abstract class InGameHudMixin {
     @Final
     private static Identifier PUMPKIN_BLUR;
 
-    private static final Identifier INVENTORY_TEXTURE = new Identifier("textures/gui/container/inventory.png");
+    private static final Identifier INVENTORY_TEXTURE = Identifier.ofVanilla("textures/gui/container/inventory.png");
+            //new Identifier("textures/gui/container/inventory.png");
 
     @Shadow
     public abstract TextRenderer getTextRenderer();
@@ -76,7 +80,7 @@ public abstract class InGameHudMixin {
 //    }
 
     @Inject(method = "renderStatusEffectOverlay", at = @At("HEAD"), cancellable = true)
-    protected void renderStatusEffectOverlay(DrawContext context, CallbackInfo ci) {
+    protected void renderStatusEffectOverlay(DrawContext context, RenderTickCounter counter, CallbackInfo ci) {
         if (!FeaturesClient.options().effectTime) return;
         Collection<StatusEffectInstance> collection = this.client.player.getStatusEffects();
         if (!collection.isEmpty()) {
@@ -91,15 +95,15 @@ public abstract class InGameHudMixin {
 
             while (var7.hasNext()) {
                 StatusEffectInstance statusEffectInstance = (StatusEffectInstance) var7.next();
-                StatusEffect statusEffect = statusEffectInstance.getEffectType();
+                RegistryEntry<StatusEffect> statusEffect = statusEffectInstance.getEffectType();
                 if (statusEffectInstance.shouldShowIcon()) {
-                    int k = this.scaledWidth;
+                    int k = context.getScaledWindowWidth();
                     int l = 1;
                     if (this.client.isDemo()) {
                         l += 15;
                     }
 
-                    if (statusEffect.isBeneficial()) {
+                    if (statusEffect.value().isBeneficial()) {
                         ++i;
                         k -= 27 * i;
                     } else {

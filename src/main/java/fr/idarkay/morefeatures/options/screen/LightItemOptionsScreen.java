@@ -23,4 +23,9 @@ public class LightItemOptionsScreen extends FeaturesScreen {
     public LightItemOptionsScreen(@Nullable Screen parent, FeaturesGameOptions featuresGameOptions) {
         super(MenuButtons.LIGHT_ITEM_TEXT, parent, featuresGameOptions, OPTIONS, null);
     }
+
+    @Override
+    protected void addOptions() {
+
+    }
 }

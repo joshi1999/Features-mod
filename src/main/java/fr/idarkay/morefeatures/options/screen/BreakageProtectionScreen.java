@@ -23,4 +23,9 @@ public class BreakageProtectionScreen extends FeaturesScreen {
     public BreakageProtectionScreen(@Nullable Screen parent, FeaturesGameOptions featuresGameOptions) {
         super(MenuButtons.BREAKAGE_PROTECTION_TEXT, parent, featuresGameOptions, OPTIONS, null);
     }
+
+    @Override
+    protected void addOptions() {
+
+    }
 }

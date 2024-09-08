@@ -43,7 +43,7 @@ public abstract class ClientPlayerInteractionManagerMixin {
                     && mainHandItem.getMaxDamage() - mainHandItem.getDamage()
                     < FeaturesClient.options().protectDurability) {
                 if (FeaturesClient.options().breakSafeSound)
-                    this.client.player.playSound(FeaturesClient.BREAK_SAFE_EVENT, SoundCategory.AMBIENT, 1f, 1f);
+                    this.client.player.playSound(FeaturesClient.BREAK_SAFE_EVENT, 1f, 1f);
                 ci.setReturnValue(false);
             }
         }
@@ -57,7 +57,7 @@ public abstract class ClientPlayerInteractionManagerMixin {
                     && mainHandItem.getMaxDamage() - mainHandItem.getDamage()
                     < FeaturesClient.options().protectDurability) {
                 if (FeaturesClient.options().breakSafeSound)
-                    this.client.player.playSound(FeaturesClient.BREAK_SAFE_EVENT, SoundCategory.AMBIENT, 1f, 1f);
+                    this.client.player.playSound(FeaturesClient.BREAK_SAFE_EVENT, 1f, 1f);
                 ci.cancel();
             }
         }

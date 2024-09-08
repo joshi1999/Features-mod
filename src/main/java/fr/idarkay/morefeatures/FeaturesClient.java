@@ -24,7 +24,7 @@ public class FeaturesClient implements ClientModInitializer {
     private static FeaturesGameOptions CONFIG;
 
     //sound
-    public static final Identifier BREAK_SAFE_ID = new Identifier("more_features_id:break_safe");
+    public static final Identifier BREAK_SAFE_ID = Identifier.of("more_features_id:break_safe");
     public static final SoundEvent BREAK_SAFE_EVENT = SoundEvent.of(BREAK_SAFE_ID);
     public static long LOCAL_TIME = 12000;
     public static boolean isEating = false;
