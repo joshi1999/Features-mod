@@ -133,7 +133,7 @@ public abstract class InGameHudMixin {
                         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, finalF);
                         context.drawSprite(finalK + 3, finalL + 3, 0, 18, 18, sprite);
 
-                        Text time = StatusEffectUtil.getDurationText(statusEffectInstance, 1.0F);
+                        Text time = StatusEffectUtil.getDurationText(statusEffectInstance, 1.0F, 20);
                         MultilineText.create(textRenderer, time).drawWithShadow(context, finalK, finalL + 25, 1, 8355711);
                     });
                 }
