@@ -8,8 +8,8 @@ More QoL
 ---
   [![Status](https://img.shields.io/badge/status-active-success.svg)]() 
   [![GitHub Release](https://img.shields.io/github/release/joshi1999/Features-mod.svg)](https://github.com/joshi1999/Features-mod/releases/latest)
-  [![Minecraft version](https://img.shields.io/badge/Minecraft_version-1.21.11-informational)](https://www.minecraft.net/store/minecraft-java-edition)
-  [![Fabric Version](https://img.shields.io/badge/Fabric_version-0.140.2%2B1.21.11-informational)]()
+  [![Minecraft version](https://img.shields.io/badge/Minecraft_version-26.1.2-informational)](https://www.minecraft.net/store/minecraft-java-edition)
+  [![Fabric Version](https://img.shields.io/badge/Fabric_version-0.149.0%2B26.1.2-informational)]()
 ---
 
 ## 📝 Table of Contents
