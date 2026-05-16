@@ -2,7 +2,7 @@ package fr.idarkay.morefeatures.features;
 
 import fr.idarkay.morefeatures.FeaturesClient;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  * Renders remaining effect time under the effect icons
  */
 public class HudRenderer {
-    public void render(GuiGraphics drawContext, DeltaTracker renderTickCounter) {
+    public void render(GuiGraphicsExtractor drawContext, DeltaTracker renderTickCounter) {
         if (!FeaturesClient.options().effectTime) {
             return;
         }
@@ -43,7 +43,7 @@ public class HudRenderer {
             int textWidth = client.font.width(timeText);
             int centeredX = x + (iconSize - textWidth) / 2;
 
-            drawContext.drawString(client.font, timeText, centeredX, y + iconSize + 2, 0xFFFFFFFF, true);
+            drawContext.text(client.font, timeText, centeredX, y + iconSize + 2, 0xFFFFFFFF, true);
 
             x -= (iconSize + 2);
         }

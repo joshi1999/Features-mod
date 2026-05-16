@@ -3,7 +3,7 @@ package fr.idarkay.morefeatures.options.screen;
 import fr.idarkay.morefeatures.options.FeaturesGameOptions;
 import fr.idarkay.morefeatures.options.Option;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.options.OptionsSubScreen;
 import net.minecraft.network.chat.CommonComponents;
@@ -59,10 +59,10 @@ public abstract class FeaturesScreen extends OptionsSubScreen {
     }
 
     @Override
-    public void render(GuiGraphics context, int mouseX, int mouseY, float delta) {
+    public void extractBackground(GuiGraphicsExtractor context, int mouseX, int mouseY, float delta) {
         //this.renderBackground(context, mouseX, mouseY, delta);
-        context.drawCenteredString(this.font, this.title, this.width / 2, 15, 16777215);
-        super.render(context, mouseX, mouseY, delta);
+        context.centeredText(this.font, this.title, this.width / 2, 15, 16777215);
+        super.extractBackground(context, mouseX, mouseY, delta);
     }
 
     @Override

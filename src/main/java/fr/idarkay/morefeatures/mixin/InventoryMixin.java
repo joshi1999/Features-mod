@@ -21,6 +21,10 @@ public abstract class InventoryMixin implements Container, Nameable {
 
     FeaturesGameOptions options = FeaturesClient.options();
 
+    /**
+     * @author joshi1999
+     * @reason keep selected slot empty if the option is enabled
+     */
     @Overwrite
     public int getFreeSlot() {
         for(int i = 0; i < this.items.size(); ++i) {

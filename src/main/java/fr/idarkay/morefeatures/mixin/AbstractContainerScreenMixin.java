@@ -1,8 +1,8 @@
 package fr.idarkay.morefeatures.mixin;
 
 import fr.idarkay.morefeatures.FeaturesClient;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.input.MouseButtonEvent;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.MenuAccess;
@@ -15,6 +15,7 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.inventory.ContainerInput;
 import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -51,8 +52,12 @@ public abstract class AbstractContainerScreenMixin<T extends AbstractContainerMe
         super(title);
     }
 
+    /**
+     * @author  Idarkay
+     * @reason  Implementing simple itemscrolling functionalities.
+     */
     @Overwrite
-    public boolean keyPressed(KeyEvent keyInput) {
+    public boolean keyPressed(@NonNull KeyEvent keyInput) {
         if (super.keyPressed(keyInput)) {
             return true;
         } else if (keyInput.input() != 256 && !this.minecraft.options.keyInventory.matches(keyInput)) {
@@ -93,8 +98,8 @@ public abstract class AbstractContainerScreenMixin<T extends AbstractContainerMe
         }
     }
 
-    @Inject(method = "renderSlot", at = @At("RETURN"))
-    private void drawSlot(GuiGraphics context, Slot slot, int mouseX, int mouseY, CallbackInfo ci) {
+    @Inject(method = "extractSlot", at = @At("RETURN"))
+    private void extractSlot(GuiGraphicsExtractor context, Slot slot, int mouseX, int mouseY, CallbackInfo ci) {
         final ItemStack cursor = this.menu.getCarried();
         final ItemStack slotIT = slot.getItem();
         if ((FeaturesClient.options().lightSameItem && !slotIT.isEmpty()
